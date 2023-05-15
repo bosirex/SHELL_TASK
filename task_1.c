@@ -19,7 +19,7 @@ int main()
     {
         display_prompt();
 
-        // Read the user input command
+        /* Read the user input command*/
         if (fgets(command, sizeof(command), stdin) == NULL) 
         {
             // Handle end of file (Ctrl+D)
@@ -27,38 +27,36 @@ int main()
             break;
         }
 
-        // Remove the trailing newline character
+        /* Remove the trailing newline character*/
         command[strcspn(command, "\n")] = '\0';
 
-        // Fork a child process
+        /* Fork a child process*/
         pid_t pid = fork();
 
         if (pid < 0) 
         {
-            // Error occurred while forking
+            /* Error occurred while forking*/
             perror("fork");
             exit(EXIT_FAILURE);
         } 
         else if (pid == 0) 
         {
-            // Child process
-
-            // Execute the command
+            /* Child process */
+            /* Execute the command */
             if (execlp(command, command, NULL) == -1) 
             {
-                // Executable not found
+                /* Executable not found */
                 fprintf(stderr, "./shell: No such file or directory %s\n", command);
                 exit(EXIT_FAILURE);
             }
 
-            // This code is executed only if exec fails
+            /* This code is executed only if exec fails */
             exit(EXIT_SUCCESS);
         } 
         else 
         {
-            // Parent process
-
-            // Wait for the child process to finish
+            /* Parent process */
+            /* Wait for the child process to finish */
             int status;
             if (waitpid(pid, &status, 0) == -1) 
             {
