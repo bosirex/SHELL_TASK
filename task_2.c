@@ -5,14 +5,7 @@
 
 pid_t pid;
 
-/**
- * display_prompt - dispays the prompt
-*/
-void display_prompt() 
-{
-    printf("simple_shell$ ");
-    fflush(stdout);
-}
+
 /**
  * remove_newline - removes new line
 */
