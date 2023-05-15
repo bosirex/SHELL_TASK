@@ -12,15 +12,15 @@ int main()
     {
         display_prompt();
 
-        /* Read the user input command*/
+        /* Read the user input command */
         if (fgets(command, sizeof(command), stdin) == NULL) 
         {
-            /* Handle end of file (Ctrl+D)
+            /* Handle end of file (Ctrl+D) */
             printf("\n");
             break;
         }
 
-        /* Remove the trailing newline character*/
+        /* Remove the trailing newline character */
         command[strcspn(command, "\n")] = '\0';
 
         /* Fork a child process*/

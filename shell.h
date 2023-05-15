@@ -8,6 +8,6 @@
 
 
 void display_prompt();
-int main(int ac, char **av, char **env);
+
 
 #endif
