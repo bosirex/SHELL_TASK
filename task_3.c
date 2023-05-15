@@ -3,7 +3,7 @@
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
 
-
+char *argument;
 pid_t pid;
 
 /**
@@ -18,7 +18,7 @@ char **parse_arguments(char *command)
         exit(EXIT_FAILURE);
     }
 
-    char *argument = strtok(command, " ");
+    *argument = strtok(command, " ");
     int i = 0;
     while (argument != NULL) 
     {
