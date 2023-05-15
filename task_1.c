@@ -22,7 +22,7 @@ int main()
         /* Read the user input command*/
         if (fgets(command, sizeof(command), stdin) == NULL) 
         {
-            // Handle end of file (Ctrl+D)
+            /* Handle end of file (Ctrl+D) */
             printf("\n");
             break;
         }
