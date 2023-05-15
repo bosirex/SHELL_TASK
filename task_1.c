@@ -4,7 +4,7 @@
 
 pid_t pid;
 
-int shell_1() 
+int main() 
 {
     char command[MAX_COMMAND_LENGTH];
 
