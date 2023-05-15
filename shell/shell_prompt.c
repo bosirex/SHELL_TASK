@@ -24,7 +24,7 @@ void shell_prompt(char **av, char **env)
         input_char = getline(&user_input, &m, stdin);
         if (input_char == -1)
         {
-            free(input_address);
+            free(user_input);
             exit(EXIT_FAILURE);
         }
         k = 0;
