@@ -11,7 +11,7 @@
 void shell_prompt(char **av, char **env)
 {
     char *user_input = NULL;
-    int m, p, child_status;
+    int k, p, child_status;
     size_t m = 0;
     ssize_t input_char;
     char *argv[MAXIMUM_COMMANDS];
