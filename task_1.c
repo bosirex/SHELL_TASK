@@ -31,7 +31,8 @@ int main()
         command[strcspn(command, "\n")] = '\0';
 
         /* Fork a child process*/
-        pid_t pid = fork();
+        pid_t pid;
+        pid = fork();
 
         if (pid < 0) 
         {
