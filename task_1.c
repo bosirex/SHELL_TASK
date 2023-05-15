@@ -2,19 +2,10 @@
 
 #define MAX_COMMAND_LENGTH 100
 
-/**
- * display_prompt - dispays the prompt
-*/
-void display_prompt() 
-{
-    printf("simple_shell$ ");
-    fflush(stdout);
-}
 
 int main() 
 {
     char command[MAX_COMMAND_LENGTH];
-    pid_t pid;
 
     while (1) 
     {
@@ -23,7 +14,7 @@ int main()
         /* Read the user input command*/
         if (fgets(command, sizeof(command), stdin) == NULL) 
         {
-            /* Handle end of file (Ctrl+D) */
+            // Handle end of file (Ctrl+D)
             printf("\n");
             break;
         }
@@ -32,7 +23,7 @@ int main()
         command[strcspn(command, "\n")] = '\0';
 
         /* Fork a child process*/
-        pid = fork();
+        pid_t pid = fork();
 
         if (pid < 0) 
         {
