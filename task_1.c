@@ -1,5 +1,5 @@
 #include "shell.h"
-
+#include <sys/wait.h>
 #define MAX_COMMAND_LENGTH 100
 
 pid_t pid;

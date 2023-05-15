@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/wait.h>
+
 
 void display_prompt();
 int main(int ac, char **av, char **env);
