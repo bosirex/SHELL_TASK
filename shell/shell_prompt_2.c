@@ -38,7 +38,7 @@ void shell_prompt(char **av, char **env)
         argv[p] = strtok(user_input, " ");
         while (argv[p])
         {
-            P++;
+            p++;
             argv[p] = strtok(NULL, " ");
         }
         child_pid = fork();
