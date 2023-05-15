@@ -61,7 +61,7 @@ void execute_command(char* command)
     }
 }
 
-int main() 
+int shell_2() 
 {
     char command[MAX_COMMAND_LENGTH];
 
