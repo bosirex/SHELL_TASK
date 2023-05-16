@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
+#include "shell.h"
 
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
@@ -38,7 +34,7 @@ int main_33() {
         command[strcspn(command, "\n")] = '\0';
 
         /* Parse the command line into arguments */
-        stcpy(token, strtok(command, " "));
+        strcpy(token, strtok(command, " "));
         i = 0;
         while (token != NULL && i < MAX_ARGUMENTS - 1) 
         {
