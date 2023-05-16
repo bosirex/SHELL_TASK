@@ -5,6 +5,7 @@
 
 char *argument;
 pid_t pid;
+int i;
 
 /**
  * parse_arguments - split the command line into separate arguments
@@ -19,7 +20,7 @@ char **parse_arguments(char *command)
     }
 
     *argument = strtok(command, " ");
-    int i = 0;
+    i = 0;
     while (argument != NULL) 
     {
         arguments[i++] = argument;
