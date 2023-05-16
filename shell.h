@@ -8,6 +8,6 @@
 
 
 void display_prompt();
-int waitpid(pid, &status, 0);
+int waitpid((pid,) &status, 0);
 
 #endif

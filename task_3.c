@@ -19,7 +19,7 @@ char **parse_arguments(char *command)
         exit(EXIT_FAILURE);
     }
 
-    *argument = strtok(command, " ");
+    char*argument = strtok(command, " ");
     i = 0;
     while (argument != NULL) 
     {
