@@ -72,11 +72,11 @@ int main()
 
         if (strcmp(command, "exit") == 0) 
         {
-            // Exit the shell if the command is "exit"
+            /* Exit the shell if the command is "exit" */
             break;
         }
 
-        int status = execute_command(command);
+        status = execute_command_4(command);
         if (status == -1) 
         {
             /* An error occurred, display the prompt again */
