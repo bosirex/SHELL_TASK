@@ -38,7 +38,7 @@ int main_33() {
         command[strcspn(command, "\n")] = '\0';
 
         /* Parse the command line into arguments */
-        char *token = strtok(command, " ");
+        *token = strtok(command, " ");
         int i = 0;
         while (token != NULL && i < MAX_ARGUMENTS - 1) 
         {
@@ -48,11 +48,10 @@ int main_33() {
         arguments[i] = NULL;
 
         /* Check if the command exists in the PATH */
-        char *path = getenv("PATH");
-        char *path_copy = strdup(path);
-        char *dir = strtok(path_copy, ":");
-
-        int command_found = 0;
+        *path = getenv("PATH");
+        *path_copy = strdup(path);
+        *dir = strtok(path_copy, ":");
+        command_found = 0;
         while (dir != NULL) {
             char command_path[MAX_COMMAND_LENGTH];
             sprintf(command_path, "%s/%s", dir, command);
