@@ -21,7 +21,7 @@ void remove_newline(char* str)
 /**
  * execute_command - 
 */
-void execute_command(char* command) 
+void execute_command_2(char* command) 
 {
     pid = fork();
     if (pid < 0) 
@@ -61,7 +61,7 @@ void execute_command(char* command)
     }
 }
 
-int shell_2() 
+int main_2() 
 {
     char command[MAX_COMMAND_LENGTH];
 

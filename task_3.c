@@ -35,7 +35,7 @@ char **parse_arguments(char *command)
 /**
  * execute_command - execute the command using execvp()
 */
-void execute_command(char **arguments) 
+void execute_command_3(char **arguments) 
 {
     execvp(arguments[0], arguments);
     fprintf(stderr, "./shell: No such file or directory %s\n", arguments[0]);
@@ -45,7 +45,7 @@ void execute_command(char **arguments)
  * main - parses the command arguments, executes the command, 
  * and handles the end-of-file condition
 */
-int main() 
+int main_3() 
 {
     char command[MAX_COMMAND_LENGTH];
 
