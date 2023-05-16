@@ -7,7 +7,7 @@
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
 
-
+int i;
 pid_t pid;
 char *token;
 char *path;
@@ -38,8 +38,8 @@ int main_33() {
         command[strcspn(command, "\n")] = '\0';
 
         /* Parse the command line into arguments */
-        *token = strtok(command, " ");
-        int i = 0;
+        stcpy(token, strtok(command, " "));
+        i = 0;
         while (token != NULL && i < MAX_ARGUMENTS - 1) 
         {
             arguments[i++] = token;
@@ -48,9 +48,9 @@ int main_33() {
         arguments[i] = NULL;
 
         /* Check if the command exists in the PATH */
-        *path = getenv("PATH");
-        *path_copy = strdup(path);
-        *dir = strtok(path_copy, ":");
+        strcpy(path, getenv("PATH"));
+        strcpy(path_copy, strdup(path));
+        strcpy(dir, strtok(path_copy, ":"));
         command_found = 0;
         while (dir != NULL) {
             char command_path[MAX_COMMAND_LENGTH];
