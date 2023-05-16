@@ -49,7 +49,7 @@ int main_33() {
         strcpy(dir, strtok(path_copy, ":"));
         command_found = 0;
         while (dir != NULL) {
-            char command_path[MAX_COMMAND_LENGTH];
+            char command_path[MAX_COMMAND_LENGTH + 1];
             sprintf(command_path, "%s/%s", dir, command);
 
             if (access(command_path, X_OK) == 0) {
