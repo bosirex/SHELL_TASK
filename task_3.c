@@ -21,7 +21,7 @@ char **parse_arguments(char *command)
         exit(EXIT_FAILURE);
     }
 
-    char*argument = strtok(command, " ");
+    const char*argument = strtok(command, " ");
     i = 0;
     while (argument != NULL) 
     {
