@@ -88,7 +88,8 @@ int main_5()
         }
 
         /* Fork a child process to execute the command */
-        strcpy(args[2], ({command, NULL}));
+        *args[1] = command;
+        *args[2] = NULL;
         execute_command_5(command, args);
     }
 
