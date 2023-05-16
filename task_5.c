@@ -4,7 +4,7 @@
 
 pid_t pid;
 int status, i;
-/*char *args[];*/
+char *args[2];
 
 void display_prompt();
 
