@@ -88,7 +88,7 @@ int main_5()
         }
 
         /* Fork a child process to execute the command */
-        *args[] = {command, NULL};
+        char *args[] = {command, NULL};
         execute_command_5(command, args);
     }
 
