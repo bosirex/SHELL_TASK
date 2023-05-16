@@ -60,7 +60,7 @@ int main_33() {
                 command_found = 1;
 
                 /* Fork a child process */
-                pid_t pid = fork();
+                pid = fork();
 
                 if (pid < 0) 
                 {
