@@ -79,7 +79,7 @@ int main_3()
             /* Parse the command arguments */
             char **arguments = parse_arguments(command);
             /* Execute the command */
-            execute_command(arguments);
+            execute_command_3(arguments);
             /* This code is executed only if exec fails */
             exit(EXIT_SUCCESS);
         } 

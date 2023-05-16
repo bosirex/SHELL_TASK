@@ -80,7 +80,7 @@ int main_2()
         remove_newline(command);
 
         /* Execute the command */
-        execute_command(command);
+        execute_command_2(command);
     }
 
     return 0;
