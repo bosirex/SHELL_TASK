@@ -3,7 +3,8 @@
 #define MAX_COMMAND_LENGTH 100
 
 pid_t pid;
-int status;
+int status, i;
+char *args[];
 
 void display_prompt();
 
@@ -79,7 +80,7 @@ int main_5()
         if (strcmp(command, "env") == 0) 
         {
             extern char **environ;
-            for (int i = 0; environ[i] != NULL; i++) 
+            for (i = 0; environ[i] != NULL; i++) 
             {
                 printf("%s\n", environ[i]);
             }
@@ -87,7 +88,7 @@ int main_5()
         }
 
         /* Fork a child process to execute the command */
-        char *args[] = {command, NULL};
+        *args[] = {command, NULL};
         execute_command_5(command, args);
     }
 
