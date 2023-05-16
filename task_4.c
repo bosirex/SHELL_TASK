@@ -3,7 +3,7 @@
 #define MAX_COMMAND_LENGTH 100
 
 pid_t pid;
-
+int status;
 
 /**
  * execute_command - handles the execution of the command
@@ -38,7 +38,7 @@ int execute_command_4(char *command)
     {
         /* Parent process */
         /* Wait for the child process to finish */
-        int status;
+        
         if (waitpid(pid, &status, 0) == -1) 
         {
             perror("waitpid");
