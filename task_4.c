@@ -1,26 +1,16 @@
 #include "shell.h"
 
 #define MAX_COMMAND_LENGTH 100
+#define MAX_ARGUMENTS 10
 
-int i, status;
+int argument_count, exit_code, status;
 pid_t pid;
 
-/**
- * handle_en - Function to handle the built-in env command
- */ 
-void handle_env(char **environ) 
-{
-    /* Print each environment variable */
-    for (i = 0; environ[i] != NULL; i++) 
-    {
-        printf("%s\n", environ[i]);
-    }
-}
-
-int main_55(int argc, char *argv[], char *environ[]) 
+int main_4() 
 {
     char command[MAX_COMMAND_LENGTH];
-    (void)argc;
+    char *arguments[MAX_ARGUMENTS];
+    char *token;
 
     while (1) 
     {
@@ -37,16 +27,30 @@ int main_55(int argc, char *argv[], char *environ[])
         /* Remove the trailing newline character */
         command[strcspn(command, "\n")] = '\0';
 
-        /* Check if the command is exit */
-        if (strcmp(command, "exit") == 0) 
+        /* Tokenize the command to separate command and arguments */
+        argument_count = 0;
+        token = strtok(command, " ");
+        while (token != NULL && argument_count < MAX_ARGUMENTS) 
         {
-            handle_exit();
+            arguments[argument_count++] = token;
+            token = strtok(NULL, " ");
         }
+        arguments[argument_count] = NULL;
 
-        /* Check if the command is env */
-        if (strcmp(command, "env") == 0) {
-            handle_env(environ);
-            continue;
+        /* Handle the exit built-in command */
+        if (strcmp(arguments[0], "exit") == 0) 
+        {
+            /* Check if any argument was provided */
+            if (argument_count > 1) 
+            {
+                /* Convert the argument to an integer */
+                exit_code = atoi(arguments[1]);
+                exit(exit_code);
+            } 
+            else 
+            {
+                exit(EXIT_SUCCESS);
+            }
         }
 
         /* Fork a child process */
@@ -61,9 +65,8 @@ int main_55(int argc, char *argv[], char *environ[])
         else if (pid == 0) 
         {
             /* Child process */
-
             /* Execute the command */
-            if (execvp(command, argv) == -1) 
+            if (execvp(arguments[0], arguments) == -1) 
             {
                 /* Executable not found */
                 perror("execvp");
@@ -77,7 +80,6 @@ int main_55(int argc, char *argv[], char *environ[])
         {
             /* Parent process */
             /* Wait for the child process to finish */
-            
             if (waitpid(pid, &status, 0) == -1) 
             {
                 perror("waitpid");
