@@ -31,6 +31,7 @@ void handle_env(char **environ)
 int main_55(int argc, char *argv[], char *environ[]) 
 {
     char command[MAX_COMMAND_LENGTH];
+    (void)argc;
 
     while (1) 
     {
