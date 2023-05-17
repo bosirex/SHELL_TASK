@@ -1,20 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
+#include "shell.h"
 
 #define MAX_COMMAND_LENGTH 100
 
 int i, status;
 pid_t pid;
-/**
- * handle_exit - Function to handle the built-in exit command
-*/
-void handle_exit() 
-{
-    exit(EXIT_SUCCESS);
-}
 
 /**
  * handle_en - Function to handle the built-in env command

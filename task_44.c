@@ -5,15 +5,6 @@
 pid_t pid;
 int status;
 
-/**
- * handle_exit - Function to handle the exit built-in command
- * 
-*/
-void handle_exit() 
-{
-    exit(EXIT_SUCCESS);
-}
-
 int main_44() {
     char command[MAX_COMMAND_LENGTH];
 
