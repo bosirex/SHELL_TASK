@@ -83,7 +83,7 @@ int main() {
             if (full_path == NULL) 
             {
                 /* Executable not found */
-                printf("%s: command not found\n", executable);
+                printf("./shell: No such file or directory %s\n", executable);
                 exit(EXIT_FAILURE);
             }
 
