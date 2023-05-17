@@ -5,7 +5,7 @@
 
 pid_t pid;
 int i;
-int main() {
+int main_exit() {
     char command[MAX_COMMAND_LENGTH];
     char *args[MAX_ARGUMENTS];
     char *path = getenv("PATH");
