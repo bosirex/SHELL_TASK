@@ -10,5 +10,6 @@
 
 
 void display_prompt();
+void handle_exit();
 
 #endif
