@@ -35,13 +35,13 @@ char *get_env(info_t *dat, const char *name)
 }
 
 /**
- * _setenv - Initialize a new environment variable,
+ * _setenviron - Initialize a new environment variable,
  *             or modify an existing one
  * @dat: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int _setenv(info_t *dat)
+int _setenviron(info_t *dat)
 {
 	if (dat->argc != 3)
 	{
@@ -54,12 +54,12 @@ int _setenv(info_t *dat)
 }
 
 /**
- * _unsetenv - Remove an environment variable
+ * _unsetenviron - Remove an environment variable
  * @dat: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  * Return: Always 0
  */
-int _unsetenv(info_t *dat)
+int _unsetenviron(info_t *dat)
 {
 	int i;
 

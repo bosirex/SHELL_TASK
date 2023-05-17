@@ -119,7 +119,7 @@ void _puts(char *);
 int _putchar(char);
 
 /* exits.c */
-char *string_copy(char *, char *, int);
+char *str_copy(char *, char *, int);
 char *string_concatenate(char *, char *, int);
 char *string_character(char *, char);
 
@@ -149,7 +149,7 @@ char *convt_number(long int, int, int);
 void comments_remove(char *);
 
 /* builtin.c */
-int _exit(info_t *);
+int _exits(info_t *);
 int _cd(info_t *);
 int _help(info_t *);
 
@@ -170,8 +170,8 @@ void free_dat(info_t *, int);
 /* environ.c */
 char *get_env(info_t *, const char *);
 int _env(info_t *);
-int _setenv(info_t *);
-int _unsetenv(info_t *);
+int _setenviron(info_t *);
+int _unsetenviron(info_t *);
 int env_list_populate(info_t *);
 
 /* env.c */

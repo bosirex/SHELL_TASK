@@ -53,7 +53,7 @@ int builtin_find(info_t *dat)
 {
 	int p, builtinret = -1;
 	table tbl[] = {
-		{"exit", _exit},
+		{"exit", _exits},
 		{"env", _env},
 		{"help", _help},
 		{"history", _history},

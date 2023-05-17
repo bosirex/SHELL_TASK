@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * _exit - exits the shell
+ * _exits - exits the shell
  * @dat: Structure containing potential arguments. Used to maintain
  * constant function prototype.
  * Return: exits with a given exit status
  * (0) if dat.argv[0] != "exit"
  */
-int _exit(info_t *dat)
+int _exits(info_t *dat)
 {
 	int exitcheck;
 
