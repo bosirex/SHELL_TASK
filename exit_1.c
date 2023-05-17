@@ -44,7 +44,7 @@ int main() {
         }
 
         /* Fork a child process */
-        pid_t pid = fork();
+        pid = fork();
 
         if (pid < 0) 
         {
