@@ -18,7 +18,7 @@ int execute_command(char *command)
     {
         /* Child process */
         /* Execute the command */
-        if (execvp(command, 0) == -1) 
+        if (execvp(command) == -1) 
         {
             /* Executable not found */
             perror("execvp");
