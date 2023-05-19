@@ -3,6 +3,7 @@
 
 int status;
 pid_t pid;
+char *args[] = {command, NULL};
 
 int execute_command(char *command) 
 {
