@@ -6,7 +6,7 @@
 
 struct
 {
-    char *arguments[];
+    char *arguments;
 };
 
 
@@ -15,7 +15,7 @@ void execute_command(char* command)
 {
     pid_t pid;
     int status;
-    
+    char *arguments[] = {command, NULL};
     pid = fork();
     if (pid < 0) 
     {
@@ -26,7 +26,7 @@ void execute_command(char* command)
     {
         /* Child process */
         char path[MAX_PATH_LENGTH];
-        char *arguments[] = {command, NULL};
+        
         
         /* Check if the command is available in the PATH */
         char *path_env = getenv("PATH");
