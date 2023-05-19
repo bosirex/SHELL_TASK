@@ -21,8 +21,8 @@ void execute_command(char* command)
         /* Child process */
         char path[MAX_PATH_LENGTH];
         char *arguments [2];
-        *arguments[1] = command;
-        *arguments[2] = NULL;
+        arguments[1] = command;
+        arguments[2] = NULL;
         /* Check if the command is available in the PATH */
         char *path_env = getenv("PATH");
         char *token = strtok(path_env, ":");
