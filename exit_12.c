@@ -9,6 +9,8 @@ void execute_command(char* command)
 {
     pid_t pid;
     int status;
+    char *path_env;
+    char *token;
     
     pid = fork();
     if (pid < 0) 
@@ -24,9 +26,9 @@ void execute_command(char* command)
         arguments[1] = command;
         arguments[2] = NULL;
         /* Check if the command is available in the PATH */
-        char *path_env;
+        
         path_env = getenv("PATH");
-        char *token = strtok(path_env, ":");
+        token = strtok(path_env, ":");
         while (token != NULL) 
         {
             snprintf(path, sizeof(path), "%s/%s", token, command);
