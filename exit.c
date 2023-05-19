@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <semaphore.h>
 #define MAX_COMMAND_LENGTH 100
 
 int status;
@@ -19,7 +18,7 @@ int execute_command(char *command)
     {
         /* Child process */
         /* Execute the command */
-        if (execvp(command, NULL) == -1) 
+        if (execvp(command, 0) == -1) 
         {
             /* Executable not found */
             perror("execvp");
