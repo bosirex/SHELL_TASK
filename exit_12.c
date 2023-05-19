@@ -4,18 +4,12 @@
 #define MAX_PATH_LENGTH 100
 
 
-struct
-{
-    char *arguments;
-};
-
-
 /* Function to execute a command */
 void execute_command(char* command) 
 {
     pid_t pid;
     int status;
-    char *arguments[] = {command, NULL};
+    
     pid = fork();
     if (pid < 0) 
     {
@@ -26,8 +20,9 @@ void execute_command(char* command)
     {
         /* Child process */
         char path[MAX_PATH_LENGTH];
-        
-        
+        char *arguments [2];
+        char *arguments[1] = command;
+        char *arguments[2] = NULL;
         /* Check if the command is available in the PATH */
         char *path_env = getenv("PATH");
         char *token = strtok(path_env, ":");
