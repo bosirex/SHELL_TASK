@@ -24,7 +24,8 @@ void execute_command(char* command)
         arguments[1] = command;
         arguments[2] = NULL;
         /* Check if the command is available in the PATH */
-        char *path_env = getenv("PATH");
+        char *path_env;
+        path_env = getenv("PATH");
         char *token = strtok(path_env, ":");
         while (token != NULL) 
         {
