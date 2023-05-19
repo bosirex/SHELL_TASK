@@ -3,6 +3,13 @@
 #define MAX_COMMAND_LENGTH 100
 #define MAX_PATH_LENGTH 100
 
+
+struct
+{
+    char *arguments[];
+};
+
+
 /* Function to execute a command */
 void execute_command(char* command) 
 {
