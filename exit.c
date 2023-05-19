@@ -1,5 +1,5 @@
 #include "shell.h"
-
+#include <semaphore.h>
 #define MAX_COMMAND_LENGTH 100
 
 int status;
