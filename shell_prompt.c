@@ -11,7 +11,7 @@
 void shell_prompt(char **av, char **env)
 {
     char *user_input = NULL;
-    int m, child_status;
+    int k, child_status;
     size_t m = 0;
     ssize_t input_char;
     char *argv[] = {NULL, NULL};
@@ -24,7 +24,7 @@ void shell_prompt(char **av, char **env)
         input_char = getline(&user_input, &m, stdin);
         if (input_char == -1)
         {
-            free(input_address);
+            free(user_input);
             exit(EXIT_FAILURE);
         }
         k = 0;
