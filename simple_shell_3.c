@@ -40,7 +40,7 @@ void execute_command(char **arguments) {
  * main - parses the command arguments, executes the command, 
  * and handles the end-of-file condition
  */
-int main() {
+int main_3() {
     char *command = NULL;
     size_t command_size = 0;
     ssize_t user_input;
