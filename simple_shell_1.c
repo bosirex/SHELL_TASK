@@ -8,16 +8,16 @@ pid_t pid;
 int main() {
     char *command = NULL;
     size_t buffer_size = 0;
-    ssize_t read;
+    ssize_t user_input;
 
     while (1) 
     {
         display_prompt();
 
         /* Read the user input command */
-        ssize_t read = getline(&command, &buffer_size, stdin);
+        user_input = getline(&command, &buffer_size, stdin);
 
-        if (read == -1) 
+        if (user_input == -1) 
         {
             /* Handle end of file (Ctrl+D) */
             printf("\n");
