@@ -20,7 +20,7 @@ void shell_prompt(char **av, char **env)
     while (1)
     {
         if (isatty(STDIN_FILENO))
-            printf("simpleshell$ ");
+            printf("simple_shell$ ");
         input_char = getline(&user_input, &m, stdin);
         if (input_char == -1)
         {
@@ -44,7 +44,7 @@ void shell_prompt(char **av, char **env)
         if (child_pid == 0)
         {
             if (execve(argv[0], argv, env) == -1)
-                printf("%s ./shell: No such file or directory\n", av[0]);
+                printf("%s: ./shell: No such file or directory\n", av[0]);
             
         }
         else
