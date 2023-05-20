@@ -5,6 +5,10 @@
 char *argument;
 pid_t pid;
 int i;
+int argument_index;
+int command_length;
+int in_quotes;
+int start_index;
 
 /**
  * parse_arguments - split the command line into separate arguments
@@ -17,10 +21,10 @@ char **parse_arguments(char *command) {
     }
 
     i = 0;
-    int argument_index = 0;
-    int command_length = strlen(command);
-    int in_quotes = 0;
-    int start_index = 0;
+    argument_index = 0;
+    command_length = strlen(command);
+    in_quotes = 0;
+    start_index = 0;
     while (i < command_length) {
         if (command[i] == '"' || command[i] == '\'') {
             in_quotes = !in_quotes;
@@ -45,7 +49,7 @@ char **parse_arguments(char *command) {
         i++;
     }
 
-    // Get the last argument
+    /* Get the last argument */
     argument = malloc((i - start_index + 1) * sizeof(char));
     if (!argument) {
         perror("malloc");
