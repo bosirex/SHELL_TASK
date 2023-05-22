@@ -7,7 +7,7 @@
  * @av: argument vector (string array)
  * @env: argument vector (string array)
 */
-void shell_prompt_2(char **av, char **env)
+void shell_prompt(char **av, char **env)
 {
     char *user_input = NULL;
     int k, p, child_status;
