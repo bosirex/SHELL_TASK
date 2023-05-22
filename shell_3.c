@@ -16,6 +16,7 @@ void shell_prompt(char **av, char **env)
     ssize_t input_char;
     char *argv[MAXIMUM_COMMANDS];
     pid_t child_pid;
+    bool command_found;
 
     while (1)
     {
@@ -42,7 +43,7 @@ void shell_prompt(char **av, char **env)
             argv[p] = strtok(NULL, " ");
         }
 
-        bool command_found = false;
+        command_found = false;
         char *path = getenv("PATH");
         if (path != NULL)
         {
