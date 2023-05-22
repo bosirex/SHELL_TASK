@@ -1,6 +1,6 @@
 #include "shell.h"
 
-#define MAXIMUM_COMMANDS 10 /*maximum number of commands*/
+#define MAXIMUM_COMMANDS 100 /*maximum number of commands*/
 
 /**
  * shell_prompt - fn for executing terminal command
@@ -16,7 +16,6 @@ void shell_prompt(char **av, char **env)
     char *argv[MAXIMUM_COMMANDS];
     pid_t child_pid;
     
-
     while (1)
     {
         if (isatty(STDIN_FILENO))
