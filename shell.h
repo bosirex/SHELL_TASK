@@ -9,6 +9,6 @@
 #include <sys/wait.h>
 
 int sum(int a, int b);
-
+void shell_prompt(av, env);
 
 #endif
