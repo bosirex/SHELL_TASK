@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <sys/wait.h>
 
 #define MAXIMUM_COMMANDS 10 /*maximum number of commands*/
 
@@ -20,7 +19,7 @@ void shell_prompt(char **av, char **env)
     while (1)
     {
         if (isatty(STDIN_FILENO))
-            printf("simpleshell$ ");
+            printf("simple_shell$ ");
         input_char = getline(&user_input, &m, stdin);
         if (input_char == -1)
         {
@@ -38,8 +37,8 @@ void shell_prompt(char **av, char **env)
         argv[p] = strtok(user_input, " ");
         while (argv[p])
         {
-            p++;
-            argv[p] = strtok(NULL, " ");
+
+            argv[++p] = strtok(NULL, " ");
         }
         child_pid = fork();
         if (child_pid == -1)
