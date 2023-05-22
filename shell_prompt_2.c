@@ -7,7 +7,7 @@
  * @av: argument vector (string array)
  * @env: argument vector (string array)
 */
-void shell_prompt(char **av, char **env)
+void shell_prompt_2(char **av, char **env)
 {
     char *user_input = NULL;
     int k, p, child_status;
@@ -56,9 +56,9 @@ void shell_prompt(char **av, char **env)
             wait(&child_status);
     }
 }
-int main(int ac, char **av, char **env)
+int main_2(int ac, char **av, char **env)
 {
     if (ac == 1)
-    shell_prompt(av, env);
+    shell_prompt_2(av, env);
     return (0);
 }
