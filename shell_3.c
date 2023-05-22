@@ -79,7 +79,10 @@ void shell_prompt(char **av, char **env)
             else
                 wait(&child_status);
         }
-        
+        else
+        {
+            printf("%s: Command not found\n", argv[0]);
+
     }
 }
 
