@@ -15,6 +15,7 @@ void shell_prompt(char **av, char **env)
     ssize_t input_char;
     char *argv[MAXIMUM_COMMANDS];
     pid_t child_pid;
+    (void)av;
 
     while (1)
     {
