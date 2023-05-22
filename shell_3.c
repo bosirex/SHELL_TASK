@@ -17,7 +17,7 @@ void shell_prompt(char **av, char **env)
     char *argv[MAXIMUM_COMMANDS];
     pid_t child_pid;
     bool command_found;
-    char *path = getenv("PATH");
+    
 
     while (1)
     {
@@ -82,7 +82,7 @@ void shell_prompt(char **av, char **env)
         else
         {
             printf("%s: Command not found\n", argv[0]);
-
+        }
     }
 }
 
