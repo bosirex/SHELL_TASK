@@ -36,9 +36,9 @@ void shell_prompt(char **av, char **env)
         p = 0;
         argv[p] = strtok(user_input, " ");
         while (argv[p])
-        {
-
-            argv[++p] = strtok(NULL, " ");
+        {  
+            p++;
+            argv[p] = strtok(NULL, " ");
         }
         child_pid = fork();
         if (child_pid == -1)
@@ -49,7 +49,7 @@ void shell_prompt(char **av, char **env)
         if (child_pid == 0)
         {
             if (execve(argv[0], argv, env) == -1)
-                printf("%c: No such file or directory\n, av[0]");
+                printf("%s: No such file or directory\n, av[0]");
             
         }
         else
