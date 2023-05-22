@@ -17,6 +17,7 @@ void shell_prompt(char **av, char **env)
     char *argv[MAXIMUM_COMMANDS];
     pid_t child_pid;
     bool command_found;
+    char *path = getenv("PATH");
 
     while (1)
     {
@@ -44,7 +45,7 @@ void shell_prompt(char **av, char **env)
         }
 
         command_found = false;
-        char *path = getenv("PATH");
+        
         if (path != NULL)
         {
             char *path_token = strtok(path, ":");
