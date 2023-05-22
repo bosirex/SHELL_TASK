@@ -56,7 +56,7 @@ void shell_prompt_2(char **av, char **env)
             wait(&child_status);
     }
 }
-int main_2(int ac, char **av, char **env)
+int main(int ac, char **av, char **env)
 {
     if (ac == 1)
     shell_prompt_2(av, env);
