@@ -32,7 +32,7 @@ int main_shell(info_t *dat, char **av)
 	}
 	wrt_history(dat);
 	free_dat(dat, 1);
-	if (!e(dat) && dat->status)
+	if (!interactiv(dat) && dat->status)
 		exit(dat->status);
 	if (ret_built == -2)
 	{

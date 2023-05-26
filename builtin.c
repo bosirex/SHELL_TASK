@@ -48,7 +48,7 @@ int _cd(info_t *dat)
 		dr = get_env(dat, "HOME=");
 		if (!dr)
 			chdr_ret = /* TODO: what should this be? */
-				chdr((dr = get_env(dat, "PWD=")) ? dr : "/");
+				chdir((dr = get_env(dat, "PWD=")) ? dr : "/");
 		else
 			chdr_ret = chdr(dr);
 	}
