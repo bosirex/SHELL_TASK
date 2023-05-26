@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av)
 {
-	data_t dat[] = { dat_INIT };
+	data_t dat[] = { DAT_INIT };
 	int file_desc = 2;
 
 	asm ("mov %1, %0\n\t"

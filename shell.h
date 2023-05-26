@@ -70,7 +70,7 @@ typedef struct passdat
 	int history_count;
 } data_t;
 
-#define dat_INIT \
+#define DAT_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0}
 
