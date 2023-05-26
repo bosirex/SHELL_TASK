@@ -16,7 +16,7 @@ int main_shell(data_t *dat, char **av)
 	{
 		clear_dat(dat);
 		if (interactiv(dat))
-			_puts("$ ");
+			_puts("simple_shell$ ");
 		_eputchar(BUF_FLUSH);
 		q = input_get(dat);
 		if (q != -1)
