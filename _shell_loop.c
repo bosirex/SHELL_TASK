@@ -111,7 +111,7 @@ void get_cmd(data_t *dat)
 		else if (*(dat->arg) != '\n')
 		{
 			dat->status = 127;
-			error_print(dat, "not found\n");
+			error_print(dat, "No such file or directory\n");
 		}
 	}
 }
