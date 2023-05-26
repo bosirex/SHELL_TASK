@@ -40,7 +40,7 @@ extern char **environ;
  */
 typedef struct liststring
 {
-	int number;
+	int num;
 	char *str;
 	struct liststring *next;
 } lst_t;

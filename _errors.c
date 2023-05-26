@@ -12,7 +12,7 @@ void _eputs(char *string)
 
 	if (!string)
 		return;
-	while (string[i] != '\0')
+	while (string[x] != '\0')
 	{
 		_eputchar(string[x]);
 		x++;
@@ -33,7 +33,7 @@ int _eputchar(char b)
 
 	if (b == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(2, buff, i);
+		write(2, buff, x);
 		x = 0;
 	}
 	if (b != BUF_FLUSH)
@@ -56,7 +56,7 @@ int fd_put(char b, int file_desc)
 
 	if (b == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(file_desc, buff, i);
+		write(file_desc, buff, x);
 		x = 0;
 	}
 	if (b != BUF_FLUSH)

@@ -53,7 +53,7 @@ int alias_set(data_t *dat, char *string)
 	if (!*++p)
 		return (alias_unset(dat, string));
 
-	alias_unset(dat, str);
+	alias_unset(dat, string);
 	return (add_nd_end(&(dat->alias), string, 0) == NULL);
 }
 

@@ -62,7 +62,7 @@ int _cd(data_t *dat)
 		}
 		_puts(get_env(dat, "OLDPWD=")), _putchar('\n');
 		chdr_ret = /* TODO: what should this be? */
-			chdir((_dr = get_env(dat, "OLDPWD=")) ? dr : "/");
+			chdir((_dr = get_env(dat, "OLDPWD=")) ? _dr : "/");
 	}
 	else
 		chdr_ret = chdir(dat->argv[1]);

@@ -123,7 +123,7 @@ char *convt_number(long int number, int _base, int _flags)
 
 /**
  * comments_remove - replaces first instance of '#' with '\0'
- * @buf: string address to be modified
+ * @buff: string address to be modified
  *
  * Return: Always 0;
  */
@@ -131,8 +131,8 @@ void comments_remove(char *buff)
 {
 	int x;
 
-	for (x = 0; buff[i] != '\0'; x++)
-		if (buff[x] == '#' && (!x || buf[x - 1] == ' '))
+	for (x = 0; buff[x] != '\0'; x++)
+		if (buff[x] == '#' && (!x || buff[x - 1] == ' '))
 		{
 			buff[x] = '\0';
 			break;

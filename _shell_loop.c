@@ -100,7 +100,7 @@ void get_cmd(data_t *dat)
 	_path = _findpath(dat, get_env(dat, "PATH="), dat->argv[0]);
 	if (_path)
 	{
-		dat->_path = _path;
+		dat->path = _path;
 		_forkcmd(dat);
 	}
 	else

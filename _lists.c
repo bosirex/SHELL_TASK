@@ -18,10 +18,10 @@ lst_t *add_nd(lst_t **hd, const char *string, int _num)
 	if (!_newhd)
 		return (NULL);
 	mem_set((void *)_newhd, 0, sizeof(lst_t));
-	_newhd->_num = _num;
+	_newhd->num = _num;
 	if (string)
 	{
-		_newhd->string = string_dup(string);
+		_newhd->str = string_dup(string);
 		if (!_newhd->string)
 		{
 			free(_newhd);
@@ -53,11 +53,11 @@ lst_t *add_nd_end(lst_t **_hd, const char *string, int _num)
 	if (!_newnd)
 		return (NULL);
 	mem_set((void *)_newnd, 0, sizeof(lst_t));
-	_newnd->_num = _num;
+	_newnd->num = _num;
 	if (string)
 	{
-		_newnd->string = string_dup(string);
-		if (!_newnd->string)
+		_newnd->str = string_dup(string);
+		if (!_newnd->str)
 		{
 			free(_newnd);
 			return (NULL);
