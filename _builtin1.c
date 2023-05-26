@@ -7,7 +7,7 @@
  *        constant function prototype.
  *  Return: Always 0
  */
-int _history(info_t *dat)
+int _history(data_t *dat)
 {
 	print_list(dat->history);
 	return (0);
@@ -20,7 +20,7 @@ int _history(info_t *dat)
  *
  * Return: Always 0 on success, 1 on error
  */
-int alias_unset(info_t *dat, char *str)
+int alias_unset(data_t *dat, char *str)
 {
 	char *p, c;
 	int ret;
@@ -43,7 +43,7 @@ int alias_unset(info_t *dat, char *str)
  *
  * Return: Always 0 on success, 1 on error
  */
-int alias_set(info_t *dat, char *str)
+int alias_set(data_t *dat, char *str)
 {
 	char *p;
 
@@ -86,7 +86,7 @@ int alias_print(lst_t *nd)
  *          constant function prototype.
  *  Return: Always 0
  */
-int _alias(info_t *dat)
+int _alias(data_t *dat)
 {
 	int i = 0;
 	char *p = NULL;

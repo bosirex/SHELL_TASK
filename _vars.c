@@ -8,7 +8,7 @@
  *
  * Return: 1 
  */
-int _ischain(info_t *dat, char *buf, size_t *m)
+int _ischain(data_t *dat, char *buf, size_t *m)
 {
 	size_t x = *m;
 
@@ -45,7 +45,7 @@ int _ischain(info_t *dat, char *buf, size_t *m)
  *
  * Return: Void
  */
-void check_chain(info_t *dat, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(data_t *dat, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t m = *p;
 
@@ -75,7 +75,7 @@ void check_chain(info_t *dat, char *buf, size_t *p, size_t i, size_t len)
  *
  * Return: 1 if replaced, 0 otherwise
  */
-int replace_alias(info_t *dat)
+int replace_alias(data_t *dat)
 {
 	int k;
 	lst_t *nd;
@@ -104,7 +104,7 @@ int replace_alias(info_t *dat)
  *
  * Return: 1 if replaced, 0 otherwise
  */
-int vars_replace(info_t *dat)
+int vars_replace(data_t *dat)
 {
 	int k = 0;
 	lst_t *nd;

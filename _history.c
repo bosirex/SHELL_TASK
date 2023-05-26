@@ -7,7 +7,7 @@
  * Return: allocated string containg history file
  */
 
-char *get_hist_file(info_t *dat)
+char *get_hist_file(data_t *dat)
 {
 	char *buf, *dr;
 
@@ -30,7 +30,7 @@ char *get_hist_file(info_t *dat)
  *
  * Return: 1 on success, else -1
  */
-int wrt_history(info_t *dat)
+int wrt_history(data_t *dat)
 {
 	ssize_t file_desc;
 	char *file_name = get_hist_file(dat);
@@ -59,7 +59,7 @@ int wrt_history(info_t *dat)
  *
  * Return: histcount on success, 0 otherwise
  */
-int history_read(info_t *dat)
+int history_read(data_t *dat)
 {
 	int y, lst = 0, line_count = 0;
 	ssize_t file_desc, rdlen, fsize = 0;
@@ -110,7 +110,7 @@ int history_read(info_t *dat)
  *
  * Return: Always 0
  */
-int build_history_list(info_t *dat, char *buf, int line_count)
+int build_history_list(data_t *dat, char *buf, int line_count)
 {
 	lst_t *nd = NULL;
 
@@ -129,7 +129,7 @@ int build_history_list(info_t *dat, char *buf, int line_count)
  *
  * Return: the new histcount
  */
-int renumber_history(info_t *dat)
+int renumber_history(data_t *dat)
 {
 	lst_t *nd = dat->history;
 	int i = 0;

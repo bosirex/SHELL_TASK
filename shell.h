@@ -68,7 +68,7 @@ typedef struct passdat
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
-} info_t;
+} data_t;
 
 #define dat_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -82,20 +82,20 @@ typedef struct passdat
 typedef struct builtin
 {
 	char *type;
-	int (*func)(info_t *);
+	int (*func)(data_t *);
 } table;
 
 
 /* shell_loop.c */
-int main_shell(info_t *, char **);
-int builtin_find(info_t *);
-void get_cmd(info_t *);
-void _forkcmd(info_t *);
+int main_shell(data_t *, char **);
+int builtin_find(data_t *);
+void get_cmd(data_t *);
+void _forkcmd(data_t *);
 
 /* parser.c */
-int _iscmd(info_t *, char *);
+int _iscmd(data_t *, char *);
 char *dup_chars(char *, int, int);
-char *_findpath(info_t *, char *, char *);
+char *_findpath(data_t *, char *, char *);
 
 /* loopmain_shell.c */
 int loopmain_shell(char **);
@@ -136,55 +136,55 @@ void *real_loc(void *, unsigned int, unsigned int);
 int ptr_free(void **);
 
 /* atoi.c */
-int interactiv(info_t *);
+int interactiv(data_t *);
 int _isdelim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
 /* errors1.c */
 int _erratoi(char *);
-void error_print(info_t *, char *);
+void error_print(data_t *, char *);
 int print_dec(int, int);
 char *convt_number(long int, int, int);
 void comments_remove(char *);
 
 /* builtin.c */
-int _exits(info_t *);
-int _cd(info_t *);
-int _help(info_t *);
+int _exits(data_t *);
+int _cd(data_t *);
+int _help(data_t *);
 
 /* builtin1.c */
-int _history(info_t *);
-int _alias(info_t *);
+int _history(data_t *);
+int _alias(data_t *);
 
 /*getline.c */
-ssize_t input_get(info_t *);
-int get_line(info_t *, char **, size_t *);
+ssize_t input_get(data_t *);
+int get_line(data_t *, char **, size_t *);
 void sigintHandler(int);
 
 /* getdat.c */
-void clear_dat(info_t *);
-void set_dat(info_t *, char **);
-void free_dat(info_t *, int);
+void clear_dat(data_t *);
+void set_dat(data_t *, char **);
+void free_dat(data_t *, int);
 
 /* environ.c */
-char *get_env(info_t *, const char *);
-int _env(info_t *);
-int _setenviron(info_t *);
-int _unsetenviron(info_t *);
-int env_list_populate(info_t *);
+char *get_env(data_t *, const char *);
+int _env(data_t *);
+int _setenviron(data_t *);
+int _unsetenviron(data_t *);
+int env_list_populate(data_t *);
 
 /* env.c */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+char **get_environ(data_t *);
+int _unsetenv(data_t *, char *);
+int _setenv(data_t *, char *, char *);
 
 /* history.c */
-char *get_hist_file(info_t *dat);
-int wrt_history(info_t *dat);
-int history_read(info_t *dat);
-int build_history_list(info_t *dat, char *buf, int line_count);
-int renumber_history(info_t *dat);
+char *get_hist_file(data_t *dat);
+int wrt_history(data_t *dat);
+int history_read(data_t *dat);
+int build_history_list(data_t *dat, char *buf, int line_count);
+int renumber_history(data_t *dat);
 
 /* lists.c */
 lst_t *add_nd(lst_t **, const char *, int);
@@ -201,10 +201,10 @@ lst_t *nd_startswith(lst_t *, char *, char);
 ssize_t get_nd_index(lst_t *, lst_t *);
 
 /* vars.c */
-int _ischain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int vars_replace(info_t *);
+int _ischain(data_t *, char *, size_t *);
+void check_chain(data_t *, char *, size_t *, size_t, size_t);
+int replace_alias(data_t *);
+int vars_replace(data_t *);
 int _replacestring(char **, char *);
 
 #endif

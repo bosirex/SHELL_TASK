@@ -7,7 +7,7 @@
  *
  * Return: 1 if true, 0 otherwise
  */
-int _iscmd(info_t *dat, char *path)
+int _iscmd(data_t *dat, char *path)
 {
 	struct stat st;
 
@@ -50,7 +50,7 @@ char *dup_chars(char *pathstr, int start, int stop)
  *
  * Return: full path of cmd if found or NULL
  */
-char *_findpath(info_t *dat, char *pathstr, char *cmd)
+char *_findpath(data_t *dat, char *pathstr, char *cmd)
 {
 	int n = 0, curr_pos = 0;
 	char *path;

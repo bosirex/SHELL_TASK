@@ -6,7 +6,7 @@
  *          constant function prototype.
  * Return: Always 0
  */
-char **get_environ(info_t *dat)
+char **get_environ(data_t *dat)
 {
 	if (!dat->environ || dat->env_changed)
 	{
@@ -24,7 +24,7 @@ char **get_environ(info_t *dat)
  * 
  *  Return: 1 on delete, 0 otherwise
  */
-int _unsetenv(info_t *dat, char *var)
+int _unsetenv(data_t *dat, char *var)
 {
 	lst_t *nd = dat->env;
 	size_t k = 0;
@@ -58,7 +58,7 @@ int _unsetenv(info_t *dat, char *var)
  * @value: the string env var value
  *  Return: Always 0
  */
-int _setenv(info_t *dat, char *var, char *value)
+int _setenv(data_t *dat, char *var, char *value)
 {
 	char *buf = NULL;
 	lst_t *nd;

@@ -7,7 +7,7 @@
  * Return: exits with a given exit status
  * (0) if dat.argv[0] != "exit"
  */
-int _exits(info_t *dat)
+int _exits(data_t *dat)
 {
 	int exitcheck;
 
@@ -35,7 +35,7 @@ int _exits(info_t *dat)
  * constant function prototype.
  * Return: Always 0
  */
-int _cd(info_t *dat)
+int _cd(data_t *dat)
 {
 	char *s, *dr, buffer[1024];
 	int chdr_ret;
@@ -85,7 +85,7 @@ int _cd(info_t *dat)
  * constant function prototype.
  * Return: Always 0
  */
-int _help(info_t *dat)
+int _help(data_t *dat)
 {
 	char **arg_array;
 

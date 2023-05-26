@@ -6,7 +6,7 @@
  *          constant function prototype.
  * Return: Always 0
  */
-int _env(info_t *dat)
+int _env(data_t *dat)
 {
 	print_lst_str(dat->env);
 	return (0);
@@ -19,7 +19,7 @@ int _env(info_t *dat)
  *
  * Return: the value
  */
-char *get_env(info_t *dat, const char *name)
+char *get_env(data_t *dat, const char *name)
 {
 	lst_t *nd = dat->env;
 	char *p;
@@ -41,7 +41,7 @@ char *get_env(info_t *dat, const char *name)
  *        constant function prototype.
  *  Return: Always 0
  */
-int _setenviron(info_t *dat)
+int _setenviron(data_t *dat)
 {
 	if (dat->argc != 3)
 	{
@@ -59,7 +59,7 @@ int _setenviron(info_t *dat)
  *        constant function prototype.
  * Return: Always 0
  */
-int _unsetenviron(info_t *dat)
+int _unsetenviron(data_t *dat)
 {
 	int i;
 
@@ -80,7 +80,7 @@ int _unsetenviron(info_t *dat)
  *          constant function prototype.
  * Return: Always 0
  */
-int env_list_populate(info_t *dat)
+int env_list_populate(data_t *dat)
 {
 	lst_t *nd = NULL;
 	size_t i;

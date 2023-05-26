@@ -35,7 +35,7 @@ int _erratoi(char *s)
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void error_print(info_t *dat, char *estr)
+void error_print(data_t *dat, char *estr)
 {
 	_eputs(dat->fname);
 	_eputs(": ");

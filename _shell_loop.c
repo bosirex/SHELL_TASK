@@ -7,7 +7,7 @@
  *
  * Return: 0 on success, 1 on error, or error code
  */
-int main_shell(info_t *dat, char **av)
+int main_shell(data_t *dat, char **av)
 {
 	ssize_t q = 0;
 	int ret_built = 0;
@@ -49,7 +49,7 @@ int main_shell(info_t *dat, char **av)
  *
  * Return: -1 if builtin not found.
  */
-int builtin_find(info_t *dat)
+int builtin_find(data_t *dat)
 {
 	int p, builtinret = -1;
 	table tbl[] = {
@@ -80,7 +80,7 @@ int builtin_find(info_t *dat)
  *
  * Return: void
  */
-void get_cmd(info_t *dat)
+void get_cmd(data_t *dat)
 {
 	char *path = NULL;
 	int p, n;
@@ -122,7 +122,7 @@ void get_cmd(info_t *dat)
  *
  * Return: void
  */
-void _forkcmd(info_t *dat)
+void _forkcmd(data_t *dat)
 {
 	pid_t new_pid;
 
