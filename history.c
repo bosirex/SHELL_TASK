@@ -18,7 +18,7 @@ char *get_hist_file(info_t *dat)
 	if (!buf)
 		return (NULL);
 	buf[0] = 0;
-	string_copy(buf, dr);
+	string_cpy(buf, dr);
 	string_cat(buf, "/");
 	string_cat(buf, HIST_FILE);
 	return (buf);
@@ -63,7 +63,7 @@ int history_read(info_t *dat)
 {
 	int y, lst = 0, line_count = 0;
 	ssize_t file_desc, rdlen, fsize = 0;
-	struct stt st;
+	struct stat st;
 	char *buf = NULL, *file_name = get_hist_file(dat);
 
 	if (!file_name)
@@ -80,7 +80,7 @@ int history_read(info_t *dat)
 	buf = malloc(sizeof(char) * (fsize + 1));
 	if (!buf)
 		return (0);
-	rdlen = read(fd, buf, fsize);
+	rdlen = read(file_desc, buf, fsize);
 	buf[fsize] = 0;
 	if (rdlen <= 0)
 		return (free(buf), 0);

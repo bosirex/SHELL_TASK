@@ -89,7 +89,7 @@ char **string_word2(char *strng, char d)
 		}
 		for (m = 0; m < k; m++)
 			z[b][m] = strng[a++];
-		z[b][n] = 0;
+		z[b][m] = 0;
 	}
 	z[b] = NULL;
 	return (z);

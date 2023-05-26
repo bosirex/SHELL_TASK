@@ -113,7 +113,7 @@ char *_startswith(const char *, const char *);
 char *string_cat(char *, char *);
 
 /* string1.c */
-char *string_copy(char *, char *);
+char *string_cpy(char *, char *);
 char *string_dup(const char *);
 void _puts(char *);
 int _putchar(char);

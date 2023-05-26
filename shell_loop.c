@@ -26,7 +26,7 @@ int main_shell(info_t *dat, char **av)
 			if (ret_built == -1)
 				get_cmd(dat);
 		}
-		else if (e(dat))
+		else if (interactiv(dat))
 			_putchar('\n');
 		free_dat(dat, 0);
 	}

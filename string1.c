@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * string_copy - copies a string
+ * string_cpy - copies a string
  * @dst: the dstination
  * @src: the source
  *
  * Return: pointer to dstination
  */
-char *string_copy(char *dst, char *src)
+char *string_cpy(char *dst, char *src)
 {
 	int a = 0;
 

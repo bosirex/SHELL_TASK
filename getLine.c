@@ -53,7 +53,7 @@ ssize_t input_buffer(info_t *dat, char **buf, size_t *len)
 ssize_t input_get(info_t *dat)
 {
 	static char *buf; /* the ';' command chain buffer */
-	static size_t i, j, len;
+	static size_t y, j, len;
 	ssize_t r = 0;
 	char **buf_p = &(dat->arg), *p;
 

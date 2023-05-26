@@ -47,7 +47,7 @@ char **lst_to_str(lst_t *hd)
 			return (NULL);
 		}
 
-		str = string_copy(str, nd->str);
+		str = string_cpy(str, nd->str);
 		strs[a] = str;
 	}
 	strs[a] = NULL;
