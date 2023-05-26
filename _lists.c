@@ -22,7 +22,7 @@ lst_t *add_nd(lst_t **hd, const char *string, int _num)
 	if (string)
 	{
 		_newhd->str = string_dup(string);
-		if (!_newhd->string)
+		if (!_newhd->str)
 		{
 			free(_newhd);
 			return (NULL);
