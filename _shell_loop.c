@@ -67,7 +67,7 @@ int builtin_find(data_t *dat)
 	for (p = 0; tbl[p].type; p++)
 		if (_strcmp(dat->argv[0], tbl[p].type) == 0)
 		{
-			dat->ln_count++;
+			dat->lenght_count++;
 			builtinret = tbl[p].func(dat);
 			break;
 		}
@@ -88,7 +88,7 @@ void get_cmd(data_t *dat)
 	dat->path = dat->argv[0];
 	if (dat->line_count_flag == 1)
 	{
-		dat->ln_count++;
+		dat->lenght_count++;
 		dat->line_count_flag = 0;
 	}
 	for (p = 0, n = 0; dat->arg[p]; p++)

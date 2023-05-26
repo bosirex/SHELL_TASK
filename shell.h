@@ -53,7 +53,7 @@ typedef struct passdat
 	char **argv;
 	char *path;
 	int argc;
-	unsigned int ln_count;
+	unsigned int lenght_count;
 	int err_num;
 	int line_count_flag;
 	char *fname;

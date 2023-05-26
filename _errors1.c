@@ -39,7 +39,7 @@ void error_print(data_t *dat, char *estr)
 {
 	_eputs(dat->fname);
 	_eputs(": ");
-	print_dec(dat->ln_count, STDERR_FILENO);
+	print_dec(dat->lenght_count, STDERR_FILENO);
 	_eputs(": ");
 	_eputs(dat->argv[0]);
 	_eputs(": ");
