@@ -47,20 +47,20 @@ typedef struct liststring
 
 typedef struct passdat
 {
-	char *path;
 	char *arg;
 	char **argv;
+	char *path;
 	int argc;
+	unsigned int lenght_count;
+	int err_number;
+	int line_count_flag;
+	char *fname;
 	lst_t *env;
 	lst_t *history;
 	lst_t *alias;
-	int line_count_flag;
-	char *fname;
 	char **environ;
 	int env_changed;
 	int status;
-	unsigned int lenght_count;
-	int err_number;
 	
 	
 
