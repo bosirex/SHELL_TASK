@@ -9,10 +9,10 @@
  */
 int _iscmd(info_t *dat, char *path)
 {
-	struct stt st;
+	struct stat st;
 
 	(void)dat;
-	if (!path || stt(path, &st))
+	if (!path || stat(path, &st))
 		return (0);
 
 	if (st.st_mode & S_IFREG)
@@ -32,7 +32,7 @@ int _iscmd(info_t *dat, char *path)
  */
 char *dup_chars(char *pathstr, int start, int stop)
 {
-	sttic char buf[1024];
+	static char buf[1024];
 	int i = 0, k = 0;
 
 	for (k = 0, i = start; i < stop; i++)

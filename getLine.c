@@ -144,7 +144,7 @@ int get_line(info_t *dat, char **ptr, size_t *length)
 	if (s)
 		string_concatenate(new_p, buf + i, k - i);
 	else
-		string_copy(new_p, buf + i, k - i + 1);
+		str_copy(new_p, buf + i, k - i + 1);
 
 	s += k - i;
 	i = k;

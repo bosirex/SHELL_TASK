@@ -109,7 +109,7 @@ int vars_replace(info_t *dat)
 	int k = 0;
 	lst_t *nd;
 
-	for (k = 0; dat->argv[k]; i++)
+	for (k = 0; dat->argv[k]; k++)
 	{
 		if (dat->argv[k][0] != '$' || !dat->argv[k][1])
 			continue;

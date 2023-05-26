@@ -73,7 +73,7 @@ int history_read(info_t *dat)
 	free(file_name);
 	if (file_desc == -1)
 		return (0);
-	if (!fstt(file_desc, &st))
+	if (!fstat(file_desc, &st))
 		fsize = st.st_size;
 	if (fsize < 2)
 		return (0);
@@ -85,12 +85,12 @@ int history_read(info_t *dat)
 	if (rdlen <= 0)
 		return (free(buf), 0);
 	close(file_desc);
-	for (i = 0; y < fsize; i++)
+	for (y = 0; y < fsize; y++)
 		if (buf[y] == '\n')
 		{
 			buf[y] = 0;
 			build_history_list(dat, buf + lst, line_count++);
-			lst = i + 1;
+			lst = y + 1;
 		}
 	if (lst != y)
 		build_history_list(dat, buf + lst, line_count++);

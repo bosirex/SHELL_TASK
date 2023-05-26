@@ -15,7 +15,7 @@ int main_shell(info_t *dat, char **av)
 	while (q != -1 && ret_built != -2)
 	{
 		clear_dat(dat);
-		if (e(dat))
+		if (interactiv(dat))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
 		q = input_get(dat);
@@ -30,7 +30,7 @@ int main_shell(info_t *dat, char **av)
 			_putchar('\n');
 		free_dat(dat, 0);
 	}
-	write_history(dat);
+	wrt_history(dat);
 	free_dat(dat, 1);
 	if (!e(dat) && dat->status)
 		exit(dat->status);
@@ -57,18 +57,18 @@ int builtin_find(info_t *dat)
 		{"env", _env},
 		{"help", _help},
 		{"history", _history},
-		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},
+		{"setenv", _setenviron},
+		{"unsetenv", _unsetenviron},
 		{"cd", _cd},
 		{"alias", _alias},
 		{NULL, NULL}
 	};
 
-	for (p = 0; tbl[i].type; p++)
+	for (p = 0; tbl[p].type; p++)
 		if (_strcmp(dat->argv[0], tbl[p].type) == 0)
 		{
 			dat->ln_count++;
-			builtinret = tbl[i].func(dat);
+			builtinret = tbl[p].func(dat);
 			break;
 		}
 	return (builtinret);
@@ -86,13 +86,13 @@ void get_cmd(info_t *dat)
 	int p, n;
 
 	dat->path = dat->argv[0];
-	if (dat->linecount_flag == 1)
+	if (dat->line_count_flag == 1)
 	{
 		dat->ln_count++;
-		dat->linecount_flag = 0;
+		dat->line_count_flag = 0;
 	}
 	for (p = 0, n = 0; dat->arg[p]; p++)
-		if (!_isdelim(dat->arg[i], " \t\n"))
+		if (!_isdelim(dat->arg[p], " \t\n"))
 			n++;
 	if (!n)
 		return;

@@ -45,7 +45,7 @@ char **string_word(char *strng, char *d)
 			z[b][n] = strng[a++];
 		z[b][n] = 0;
 	}
-	z[j] = NULL;
+	z[b] = NULL;
 	return (z);
 }
 
@@ -87,7 +87,7 @@ char **string_word2(char *strng, char d)
 			free(z);
 			return (NULL);
 		}
-		for (n = 0; n < k; n++)
+		for (m = 0; m < k; m++)
 			z[b][m] = strng[a++];
 		z[b][n] = 0;
 	}
