@@ -50,7 +50,7 @@ int _cd(info_t *dat)
 			chdr_ret = /* TODO: what should this be? */
 				chdir((dr = get_env(dat, "PWD=")) ? dr : "/");
 		else
-			chdr_ret = chdr(dr);
+			chdr_ret = chdir(dr);
 	}
 	else if (_strcmp(dat->argv[1], "-") == 0)
 	{
@@ -62,10 +62,10 @@ int _cd(info_t *dat)
 		}
 		_puts(get_env(dat, "OLDPWD=")), _putchar('\n');
 		chdr_ret = /* TODO: what should this be? */
-			chdr((dr = get_env(dat, "OLDPWD=")) ? dr : "/");
+			chdir((dr = get_env(dat, "OLDPWD=")) ? dr : "/");
 	}
 	else
-		chdr_ret = chdr(dat->argv[1]);
+		chdr_ret = chdir(dat->argv[1]);
 	if (chdr_ret == -1)
 	{
 		error_print(dat, "can't cd to ");

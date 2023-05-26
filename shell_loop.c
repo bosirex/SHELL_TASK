@@ -105,7 +105,7 @@ void get_cmd(info_t *dat)
 	}
 	else
 	{
-		if ((e(dat) || get_env(dat, "PATH=")
+		if ((interactiv(dat) || get_env(dat, "PATH=")
 					|| dat->argv[0][0] == '/') && _iscmd(dat, dat->argv[0]))
 			_forkcmd(dat);
 		else if (*(dat->arg) != '\n')
