@@ -46,9 +46,9 @@ int wrt_history(data_t *dat)
 	for (nd = dat->history; nd; nd = nd->next)
 	{
 		putsfile_desc(nd->str, file_desc);
-		put_fd('\n', file_desc);
+		fd_put('\n', file_desc);
 	}
-	put_fd(BUF_FLUSH, file_desc);
+	fd_put(BUF_FLUSH, file_desc);
 	close(file_desc);
 	return (1);
 }
@@ -57,7 +57,7 @@ int wrt_history(data_t *dat)
  * history_read - reads history from file
  * @dat: the parameter struct
  *
- * Return: histcount on success, 0 otherwise
+ * Return: history_count on success, 0 otherwise
  */
 int history_read(data_t *dat)
 {
@@ -95,18 +95,18 @@ int history_read(data_t *dat)
 	if (lst != y)
 		build_history_list(dat, buf + lst, line_count++);
 	free(buf);
-	dat->histcount = line_count;
-	while (dat->histcount-- >= HIST_MAX)
+	dat->history_count = line_count;
+	while (dat->history_count-- >= HIST_MAX)
 		delete_nd_at_index(&(dat->history), 0);
 	renumber_history(dat);
-	return (dat->histcount);
+	return (dat->history_count);
 }
 
 /**
  * build_history_list - adds entry to a history linked list
  * @dat: Structure containing potential arguments. Used to maintain
  * @buf: buffer
- * @line_count: the history line_count, histcount
+ * @line_count: the history line_count, history_count
  *
  * Return: Always 0
  */
@@ -127,7 +127,7 @@ int build_history_list(data_t *dat, char *buf, int line_count)
  * renumber_history - renumbers the history linked list after changes
  * @dat: Structure containing potential arguments. Used to maintain
  *
- * Return: the new histcount
+ * Return: the new history_count
  */
 int renumber_history(data_t *dat)
 {
@@ -139,5 +139,5 @@ int renumber_history(data_t *dat)
 		nd->num = i++;
 		nd = nd->next;
 	}
-	return (dat->histcount = i);
+	return (dat->history_count = i);
 }

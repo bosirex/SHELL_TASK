@@ -1,31 +1,31 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts a string to an integer
- * @s: the string to be converted
+ * _erratoi - string to integer converter
+ * @s: converted string
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int _erratoi(char *s)
+int _erratoi(char *z)
 {
-	int i = 0;
-	unsigned long int result = 0;
+	int y = 0;
+	unsigned long int _result = 0;
 
-	if (*s == '+')
-		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	if (*z == '+')
+		z++;  
+	for (y = 0;  z[y] != '\0'; y++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (z[y] >= '0' && z[y] <= '9')
 		{
-			result *= 10;
-			result += (s[i] - '0');
-			if (result > INT_MAX)
+			_result *= 10;
+			_result += (z[y] - '0');
+			if (_result > INT_MAX)
 				return (-1);
 		}
 		else
 			return (-1);
 	}
-	return (result);
+	return (_result);
 }
 
 /**
@@ -35,7 +35,7 @@ int _erratoi(char *s)
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void error_print(data_t *dat, char *estr)
+void error_print(data_t *dat, char *_estr)
 {
 	_eputs(dat->fname);
 	_eputs(": ");
@@ -43,46 +43,46 @@ void error_print(data_t *dat, char *estr)
 	_eputs(": ");
 	_eputs(dat->argv[0]);
 	_eputs(": ");
-	_eputs(estr);
+	_eputs(_estr);
 }
 
 /**
- * print_dec - function prints a decimal (integer) number (base 10)
+ * print_dec - function prints a decimal number
  * @input: the input
  * @fd: the filedescriptor to write to
  *
  * Return: number of characters printed
  */
-int print_dec(int input, int fd)
+int print_dec(int _input, int file_desc)
 {
 	int (*__putchar)(char) = _putchar;
-	int i, count = 0;
-	unsigned int _abs_, current;
+	int t, cnt = 0;
+	unsigned int _abs, _current;
 
-	if (fd == STDERR_FILENO)
+	if (file_desc == STDERR_FILENO)
 		__putchar = _eputchar;
-	if (input < 0)
+	if (_input < 0)
 	{
-		_abs_ = -input;
+		_abs = -_input;
 		__putchar('-');
-		count++;
+		cnt++;
 	}
 	else
-		_abs_ = input;
-	current = _abs_;
-	for (i = 1000000000; i > 1; i /= 10)
+		_abs = _input;
+	_current = _abs;
+	for (t = 1000000000; t > 1; t /= 10)
 	{
-		if (_abs_ / i)
+		if (_abs / t)
 		{
-			__putchar('0' + current / i);
-			count++;
+			__putchar('0' + _current / t);
+			cnt++;
 		}
-		current %= i;
+		_current %= t;
 	}
-	__putchar('0' + current);
-	count++;
+	__putchar('0' + _current);
+	cnt++;
 
-	return (count);
+	return (cnt);
 }
 
 /**
@@ -93,31 +93,31 @@ int print_dec(int input, int fd)
  *
  * Return: string
  */
-char *convt_number(long int num, int base, int flags)
+char *convt_number(long int number, int _base, int _flags)
 {
-	static char *array;
-	static char buffer[50];
-	char sign = 0;
+	static char *arry;
+	static char _buffer[50];
+	char _sign = 0;
 	char *ptr;
-	unsigned long n = num;
+	unsigned long n = number;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(_flags & CONVERT_UNSIGNED) && number < 0)
 	{
-		n = -num;
-		sign = '-';
+		n = -number;
+		_sign = '-';
 
 	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &buffer[49];
+	arry = _flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &_buffer[49];
 	*ptr = '\0';
 
 	do	{
-		*--ptr = array[n % base];
-		n /= base;
+		*--ptr = arry[n % _base];
+		n /= _base;
 	} while (n != 0);
 
-	if (sign)
-		*--ptr = sign;
+	if (_sign)
+		*--ptr = _sign;
 	return (ptr);
 }
 
@@ -127,14 +127,14 @@ char *convt_number(long int num, int base, int flags)
  *
  * Return: Always 0;
  */
-void comments_remove(char *buf)
+void comments_remove(char *buff)
 {
-	int i;
+	int x;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (x = 0; buff[i] != '\0'; x++)
+		if (buff[x] == '#' && (!x || buf[x - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buff[x] = '\0';
 			break;
 		}
 }

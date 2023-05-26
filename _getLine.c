@@ -8,12 +8,12 @@
  *
  * Return: bytes read
  */
-ssize_t input_buffer(data_t *dat, char **buf, size_t *len)
+ssize_t input_buffer(data_t *dat, char **buf, size_t *_len)
 {
 	ssize_t r = 0;
 	size_t len_p = 0;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!*_len) /* if nothing left in the buffer, fill it */
 	{
 		/*ptr_free((void **)dat->cmd_buf);*/
 		free(*buf);
@@ -33,10 +33,10 @@ ssize_t input_buffer(data_t *dat, char **buf, size_t *len)
 			}
 			dat->line_count_flag = 1;
 			comments_remove(*buf);
-			build_history_list(dat, *buf, dat->histcount++);
+			build_history_list(dat, *buf, dat->history_count++);
 			/* if (string_character(*buf, ';')) is this a command chain? */
 			{
-				*len = r;
+				*_len = r;
 				dat->cmd_buf = buf;
 			}
 		}
@@ -103,7 +103,7 @@ ssize_t read_buf(data_t *dat, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(dat->readfd, buf, READ_BUF_SIZE);
+	r = read(dat->_readfd, buf, READ_BUF_SIZE);
 	if (r >= 0)
 		*i = r;
 	return (r);

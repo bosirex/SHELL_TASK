@@ -36,9 +36,9 @@ int main_shell(data_t *dat, char **av)
 		exit(dat->status);
 	if (ret_built == -2)
 	{
-		if (dat->err_num == -1)
+		if (dat->err_number == -1)
 			exit(dat->status);
-		exit(dat->err_num);
+		exit(dat->err_number);
 	}
 	return (ret_built);
 }
@@ -65,7 +65,7 @@ int builtin_find(data_t *dat)
 	};
 
 	for (p = 0; tbl[p].type; p++)
-		if (_strcmp(dat->argv[0], tbl[p].type) == 0)
+		if (str_comparison(dat->argv[0], tbl[p].type) == 0)
 		{
 			dat->lenght_count++;
 			builtinret = tbl[p].func(dat);
@@ -82,7 +82,7 @@ int builtin_find(data_t *dat)
  */
 void get_cmd(data_t *dat)
 {
-	char *path = NULL;
+	char *_path = NULL;
 	int p, n;
 
 	dat->path = dat->argv[0];
@@ -97,10 +97,10 @@ void get_cmd(data_t *dat)
 	if (!n)
 		return;
 
-	path = _findpath(dat, get_env(dat, "PATH="), dat->argv[0]);
-	if (path)
+	_path = _findpath(dat, get_env(dat, "PATH="), dat->argv[0]);
+	if (_path)
 	{
-		dat->path = path;
+		dat->_path = _path;
 		_forkcmd(dat);
 	}
 	else

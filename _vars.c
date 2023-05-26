@@ -3,30 +3,30 @@
 /**
  * _ischain - test for a chain delimeter
  * @dat: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
+ * @buff: the char buffer
+ * @m: address of current position in buf
  *
  * Return: 1 
  */
-int _ischain(data_t *dat, char *buf, size_t *m)
+int _ischain(data_t *dat, char *buff, size_t *m)
 {
 	size_t x = *m;
 
-	if (buf[x] == '|' && buf[x + 1] == '|')
+	if (buff[x] == '|' && buff[x + 1] == '|')
 	{
-		buf[x] = 0;
+		buff[x] = 0;
 		x++;
 		dat->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[x] == '&' && buf[x + 1] == '&')
+	else if (buff[x] == '&' && buff[x + 1] == '&')
 	{
-		buf[x] = 0;
+		buff[x] = 0;
 		x++;
 		dat->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[x] == ';') 
+	else if (buff[x] == ';') 
 	{
-		buf[x] = 0; 
+		buff[x] = 0; 
 		dat->cmd_buf_type = CMD_CHAIN;
 	}
 	else
@@ -36,42 +36,42 @@ int _ischain(data_t *dat, char *buf, size_t *m)
 }
 
 /**
- * check_chain - checks we should continue chaining based on last status
- * @dat: the parameter struct
+ * check_chain - checks for continue chaining
+ * @dat: the  struct parameter
  * @buf: the char buffer
- * @p: address of current position in buf
- * @i: starting position in buf
- * @len: length of buf
+ * @a: current position address
+ * @j: starting position 
+ * @_len: buf length 
  *
  * Return: Void
  */
-void check_chain(data_t *dat, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(data_t *dat, char *buf, size_t *a, size_t j, size_t _len)
 {
-	size_t m = *p;
+	size_t m = *a;
 
 	if (dat->cmd_buf_type == CMD_AND)
 	{
 		if (dat->status)
 		{
-			buf[i] = 0;
-			m = len;
+			buf[j] = 0;
+			m = _len;
 		}
 	}
 	if (dat->cmd_buf_type == CMD_OR)
 	{
 		if (!dat->status)
 		{
-			buf[i] = 0;
-			m = len;
+			buf[j] = 0;
+			m = _len;
 		}
 	}
 
-	*p = m;
+	*a = m;
 }
 
 /**
- * replace_alias - replaces an aliases in the tokenized string
- * @dat: the parameter struct
+ * replace_alias - replaces an aliases
+ * @dat: the  struct parameter
  *
  * Return: 1 if replaced, 0 otherwise
  */
@@ -99,8 +99,8 @@ int replace_alias(data_t *dat)
 }
 
 /**
- * vars_replace - replaces vars in the tokenized string
- * @dat: the parameter struct
+ * vars_replace - replaces vars 
+ * @dat: the struct parameter 
  *
  * Return: 1 if replaced, 0 otherwise
  */
@@ -114,13 +114,13 @@ int vars_replace(data_t *dat)
 		if (dat->argv[k][0] != '$' || !dat->argv[k][1])
 			continue;
 
-		if (!_strcmp(dat->argv[k], "$?"))
+		if (!str_comparison(dat->argv[k], "$?"))
 		{
 			_replacestring(&(dat->argv[k]),
 					string_dup(convt_number(dat->status, 10, 0)));
 			continue;
 		}
-		if (!_strcmp(dat->argv[k], "$$"))
+		if (!str_comparison(dat->argv[k], "$$"))
 		{
 			_replacestring(&(dat->argv[k]),
 					string_dup(convt_number(getpid(), 10, 0)));
@@ -141,14 +141,14 @@ int vars_replace(data_t *dat)
 
 /**
  * _replacestring - replaces string
- * @old: address of old string
- * @new: new string
+ * @_old: address of old string
+ * @_new: new string
  *
  * Return: 1 if replaced, 0 otherwise
  */
-int _replacestring(char **old, char *new)
+int _replacestring(char **_old, char *_new)
 {
-	free(*old);
-	*old = new;
+	free(*_old);
+	*_old = _new;
 	return (1);
 }

@@ -3,19 +3,19 @@
 /**
  * string_cpy - copies a string
  * @dst: the dstination
- * @src: the source
+ * @_src: the source
  *
  * Return: pointer to dstination
  */
-char *string_cpy(char *dst, char *src)
+char *string_cpy(char *dst, char *_src)
 {
 	int a = 0;
 
-	if (dst == src || src == 0)
+	if (dst == _src || _src == 0)
 		return (dst);
-	while (src[a])
+	while (_src[a])
 	{
-		dst[a] = src[a];
+		dst[a] = _src[a];
 		a++;
 	}
 	dst[a] = 0;
@@ -24,64 +24,64 @@ char *string_cpy(char *dst, char *src)
 
 /**
  * string_dup - duplicates a string
- * @str: the string to duplicate
+ * @strng: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *string_dup(const char *str)
+char *string_dup(const char *strng)
 {
-	int len = 0;
-	char *ret;
+	int length = 0;
+	char *_ret;
 
-	if (str == NULL)
+	if (strng == NULL)
 		return (NULL);
-	while (*str++)
-		len++;
-	ret = malloc(sizeof(char) * (len + 1));
-	if (!ret)
+	while (*strng++)
+		length++;
+	_ret = malloc(sizeof(char) * (length + 1));
+	if (!_ret)
 		return (NULL);
-	for (len++; len--;)
-		ret[len] = *--str;
-	return (ret);
+	for (length++; length--;)
+		_ret[length] = *--strng;
+	return (_ret);
 }
 
 /**
  * _puts - prints an input string
- * @str: the string to be printed
+ * @string: the string to be printed
  *
  * Return: Nothing
  */
-void _puts(char *str)
+void _puts(char *string)
 {
 	int a = 0;
 
-	if (!str)
+	if (!string)
 		return;
-	while (str[a] != '\0')
+	while (string[a] != '\0')
 	{
-		_putchar(str[a]);
+		_putchar(string[a]);
 		a++;
 	}
 }
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
+ * @d: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putchar(char c)
+int _putchar(char d)
 {
 	static int a;
-	static char buf[WRITE_BUF_SIZE];
+	static char buff[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	if (d == BUF_FLUSH || a >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, a);
+		write(1, buff, a);
 		a = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[a++] = c;
+	if (d != BUF_FLUSH)
+		buff[a++] = d;
 	return (1);
 }

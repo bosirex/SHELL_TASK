@@ -2,84 +2,84 @@
 
 /**
  * _eputs - prints an input string
- * @str: the string to be printed
+ * @string: the string to be printed
  *
  * Return: Nothing
  */
-void _eputs(char *str)
+void _eputs(char *string)
 {
-	int i = 0;
+	int x = 0;
 
-	if (!str)
+	if (!string)
 		return;
-	while (str[i] != '\0')
+	while (string[i] != '\0')
 	{
-		_eputchar(str[i]);
-		i++;
+		_eputchar(string[x]);
+		x++;
 	}
 }
 
 /**
  * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * @b: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _eputchar(char c)
+int _eputchar(char b)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static int x;
+	static char buff[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (b == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, i);
-		i = 0;
+		write(2, buff, i);
+		x = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (b != BUF_FLUSH)
+		buff[x++] = b;
 	return (1);
 }
 
 /**
- * put_fd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * fd_put - writes the character c to given fd
+ * @b: The character to print
+ * @file_desc: The filedescriptor to write to
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int put_fd(char c, int fd)
+int fd_put(char b, int file_desc)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static int x;
+	static char buff[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (b == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, i);
-		i = 0;
+		write(file_desc, buff, i);
+		x = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (b != BUF_FLUSH)
+		buff[x++] = b;
 	return (1);
 }
 
 /**
  * putsfile_desc - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ * @string: the string to be printed
+ * @file_desc: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
-int putsfile_desc(char *str, int fd)
+int putsfile_desc(char *string, int file_desc)
 {
-	int i = 0;
+	int x = 0;
 
-	if (!str)
+	if (!string)
 		return (0);
-	while (*str)
+	while (*string)
 	{
-		i += put_fd(*str++, fd);
+		x += fd_put(*string++, file_desc);
 	}
-	return (i);
+	return (x);
 }

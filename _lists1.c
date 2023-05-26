@@ -63,7 +63,7 @@ char **lst_to_str(lst_t *hd)
  */
 size_t print_list(const lst_t *h)
 {
-	size_t i = 0;
+	size_t a = 0;
 
 	while (h)
 	{
@@ -73,9 +73,9 @@ size_t print_list(const lst_t *h)
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
 		h = h->next;
-		i++;
+		a++;
 	}
-	return (i);
+	return (a);
 }
 
 /**
@@ -109,14 +109,14 @@ lst_t *nd_startswith(lst_t *nd, char *prefix, char c)
  */
 ssize_t get_nd_index(lst_t *hd, lst_t *nd)
 {
-	size_t i = 0;
+	size_t a = 0;
 
 	while (hd)
 	{
 		if (hd == nd)
-			return (i);
+			return (a);
 		hd = hd->next;
-		i++;
+		a++;
 	}
 	return (-1);
 }

@@ -3,63 +3,63 @@
 /**
  * add_nd - adds a nd to the start of the list
  * @hd: address of pointer to hd nd
- * @str: str field of nd
- * @num: nd index used by history
+ * @string: str field of nd
+ * @_num: nd index used by history
  *
  * Return: size of list
  */
-lst_t *add_nd(lst_t **hd, const char *str, int num)
+lst_t *add_nd(lst_t **hd, const char *string, int _num)
 {
-	lst_t *new_hd;
+	lst_t *_newhd;
 
 	if (!hd)
 		return (NULL);
-	new_hd = malloc(sizeof(lst_t));
-	if (!new_hd)
+	_newhd = malloc(sizeof(lst_t));
+	if (!_newhd)
 		return (NULL);
-	mem_set((void *)new_hd, 0, sizeof(lst_t));
-	new_hd->num = num;
-	if (str)
+	mem_set((void *)_newhd, 0, sizeof(lst_t));
+	_newhd->_num = _num;
+	if (string)
 	{
-		new_hd->str = string_dup(str);
-		if (!new_hd->str)
+		_newhd->string = string_dup(string);
+		if (!_newhd->string)
 		{
-			free(new_hd);
+			free(_newhd);
 			return (NULL);
 		}
 	}
-	new_hd->next = *hd;
-	*hd = new_hd;
-	return (new_hd);
+	_newhd->next = *hd;
+	*hd = _newhd;
+	return (_newhd);
 }
 
 /**
  * add_nd_end - adds a nd to the end of the list
- * @hd: address of pointer to hd nd
- * @str: str field of nd
- * @num: nd index used by history
+ * @_hd: address of pointer to hd nd
+ * @string: str field of nd
+ * @_num: nd index used by history
  *
  * Return: size of list
  */
-lst_t *add_nd_end(lst_t **hd, const char *str, int num)
+lst_t *add_nd_end(lst_t **_hd, const char *string, int _num)
 {
-	lst_t *new_nd, *nd;
+	lst_t *_newnd, *nd;
 
-	if (!hd)
+	if (!_hd)
 		return (NULL);
 
-	nd = *hd;
-	new_nd = malloc(sizeof(lst_t));
-	if (!new_nd)
+	nd = *_hd;
+	_newnd = malloc(sizeof(lst_t));
+	if (!_newnd)
 		return (NULL);
-	mem_set((void *)new_nd, 0, sizeof(lst_t));
-	new_nd->num = num;
-	if (str)
+	mem_set((void *)_newnd, 0, sizeof(lst_t));
+	_newnd->_num = _num;
+	if (string)
 	{
-		new_nd->str = string_dup(str);
-		if (!new_nd->str)
+		_newnd->string = string_dup(string);
+		if (!_newnd->string)
 		{
-			free(new_nd);
+			free(_newnd);
 			return (NULL);
 		}
 	}
@@ -67,11 +67,11 @@ lst_t *add_nd_end(lst_t **hd, const char *str, int num)
 	{
 		while (nd->next)
 			nd = nd->next;
-		nd->next = new_nd;
+		nd->next = _newnd;
 	}
 	else
-		*hd = new_nd;
-	return (new_nd);
+		*_hd = _newnd;
+	return (_newnd);
 }
 
 /**
@@ -80,55 +80,55 @@ lst_t *add_nd_end(lst_t **hd, const char *str, int num)
  *
  * Return: list size
  */
-size_t print_lst_str(const lst_t *h)
+size_t print_lst_str(const lst_t *k)
 {
-	size_t j = 0;
+	size_t m = 0;
 
-	while (h)
+	while (k)
 	{
-		_puts(h->str ? h->str : "(nil)");
+		_puts(k->str ? k->str : "(nil)");
 		_puts("\n");
-		h = h->next;
-		j++;
+		k = k->next;
+		m++;
 	}
-	return (j);
+	return (m);
 }
 
 /**
  * delete_nd_at_index - deletes nd at given index
- * @hd: address of pointer to first nd
- * @index: index of nd to delete
+ * @_hd: address of pointer to first nd
+ * @indx: index of nd to delete
  *
  * Return: 1 on success, 0 on failure
  */
-int delete_nd_at_index(lst_t **hd, unsigned int index)
+int delete_nd_at_index(lst_t **_hd, unsigned int indx)
 {
-	lst_t *nd, *prev_nd;
-	unsigned int j = 0;
+	lst_t *_prevnd, *nd;
+	unsigned int k = 0;
 
-	if (!hd || !*hd)
+	if (!_hd || !*_hd)
 		return (0);
 
-	if (!index)
+	if (!indx)
 	{
-		nd = *hd;
-		*hd = (*hd)->next;
+		nd = *_hd;
+		*_hd = (*_hd)->next;
 		free(nd->str);
 		free(nd);
 		return (1);
 	}
-	nd = *hd;
+	nd = *_hd;
 	while (nd)
 	{
-		if (j == index)
+		if (k == indx)
 		{
-			prev_nd->next = nd->next;
+			_prevnd->next = nd->next;
 			free(nd->str);
 			free(nd);
 			return (1);
 		}
-		j++;
-		prev_nd = nd;
+		k++;
+		_prevnd = nd;
 		nd = nd->next;
 	}
 	return (0);
@@ -142,18 +142,18 @@ int delete_nd_at_index(lst_t **hd, unsigned int index)
  */
 void free_list(lst_t **ptr_hd)
 {
-	lst_t *nd, *next_nd, *hd;
+	lst_t *_nextnd, *nd, *_hd;
 
 	if (!ptr_hd || !*ptr_hd)
 		return;
-	hd = *ptr_hd;
-	nd = hd;
+	_hd = *ptr_hd;
+	nd = _hd;
 	while (nd)
 	{
-		next_nd = nd->next;
+		_nextnd = nd->next;
 		free(nd->str);
 		free(nd);
-		nd = next_nd;
+		nd = _nextnd;
 	}
 	*ptr_hd = NULL;
 }

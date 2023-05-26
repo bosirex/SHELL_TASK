@@ -66,8 +66,8 @@ void free_dat(data_t *dat, int all)
 		f_free(dat->environ);
 			dat->environ = NULL;
 		ptr_free((void **)dat->cmd_buf);
-		if (dat->readfd > 2)
-			close(dat->readfd);
+		if (dat->_readfd > 2)
+			close(dat->_readfd);
 		_putchar(BUF_FLUSH);
 	}
 }

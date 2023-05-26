@@ -15,18 +15,18 @@ int _env(data_t *dat)
 /**
  * get_env - gets the value of an environ variable
  * @dat: Structure containing potential arguments. Used to maintain
- * @name: env var name
+ * @_name: env var name
  *
  * Return: the value
  */
-char *get_env(data_t *dat, const char *name)
+char *get_env(data_t *dat, const char *_name)
 {
 	lst_t *nd = dat->env;
 	char *p;
 
 	while (nd)
 	{
-		p = _startswith(nd->str, name);
+		p = _startswith(nd->str, _name);
 		if (p && *p)
 			return (p);
 		nd = nd->next;
@@ -61,15 +61,15 @@ int _setenviron(data_t *dat)
  */
 int _unsetenviron(data_t *dat)
 {
-	int i;
+	int x;
 
 	if (dat->argc == 1)
 	{
 		_eputs("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= dat->argc; i++)
-		_unsetenv(dat, dat->argv[i]);
+	for (x = 1; x <= dat->argc; x++)
+		_unsetenv(dat, dat->argv[x]);
 
 	return (0);
 }
@@ -83,10 +83,10 @@ int _unsetenviron(data_t *dat)
 int env_list_populate(data_t *dat)
 {
 	lst_t *nd = NULL;
-	size_t i;
+	size_t x;
 
-	for (i = 0; environ[i]; i++)
-		add_nd_end(&nd, environ[i], 0);
+	for (x = 0; environ[x]; x++)
+		add_nd_end(&nd, environ[x], 0);
 	dat->env = nd;
 	return (0);
 }

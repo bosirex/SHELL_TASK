@@ -35,7 +35,7 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		dat->readfd = file_desc;
+		dat->_readfd = file_desc;
 	}
 	env_list_populate(dat);
 	history_read(dat);

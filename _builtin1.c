@@ -16,45 +16,45 @@ int _history(data_t *dat)
 /**
  * alias_unset - sets alias to string
  * @dat: parameter struct
- * @str: the string alias
+ * @string: the string alias
  *
  * Return: Always 0 on success, 1 on error
  */
-int alias_unset(data_t *dat, char *str)
+int alias_unset(data_t *dat, char *string)
 {
 	char *p, c;
-	int ret;
+	int _ret;
 
-	p = string_character(str, '=');
+	p = string_character(string, '=');
 	if (!p)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = delete_nd_at_index(&(dat->alias),
-		get_nd_index(dat->alias, nd_startswith(dat->alias, str, -1)));
+	_ret = delete_nd_at_index(&(dat->alias),
+		get_nd_index(dat->alias, nd_startswith(dat->alias, string, -1)));
 	*p = c;
-	return (ret);
+	return (_ret);
 }
 
 /**
  * alias_set - sets alias to string
  * @dat: parameter struct
- * @str: the string alias
+ * @string: the string alias
  *
  * Return: Always 0 on success, 1 on error
  */
-int alias_set(data_t *dat, char *str)
+int alias_set(data_t *dat, char *string)
 {
 	char *p;
 
-	p = string_character(str, '=');
+	p = string_character(string, '=');
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (alias_unset(dat, str));
+		return (alias_unset(dat, string));
 
 	alias_unset(dat, str);
-	return (add_nd_end(&(dat->alias), str, 0) == NULL);
+	return (add_nd_end(&(dat->alias), string, 0) == NULL);
 }
 
 /**
@@ -88,7 +88,7 @@ int alias_print(lst_t *nd)
  */
 int _alias(data_t *dat)
 {
-	int i = 0;
+	int x = 0;
 	char *p = NULL;
 	lst_t *nd = NULL;
 
@@ -102,13 +102,13 @@ int _alias(data_t *dat)
 		}
 		return (0);
 	}
-	for (i = 1; dat->argv[i]; i++)
+	for (x = 1; dat->argv[x]; x++)
 	{
-		p = string_character(dat->argv[i], '=');
+		p = string_character(dat->argv[x], '=');
 		if (p)
-			alias_set(dat, dat->argv[i]);
+			alias_set(dat, dat->argv[x]);
 		else
-			alias_print(nd_startswith(dat->alias, dat->argv[i], '='));
+			alias_print(nd_startswith(dat->alias, dat->argv[x], '='));
 	}
 
 	return (0);

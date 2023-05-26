@@ -2,7 +2,7 @@
 
 /**
  * ptr_free - NULLs the pointer address
- * @ptr: pointer address to be freed
+ * @pt: pointer address to be freed
  *
  * Return: 1 if freed, otherwise 0.
  */

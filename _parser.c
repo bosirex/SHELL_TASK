@@ -3,16 +3,16 @@
 /**
  * _iscmd - determines if a file is an executable command
  * @dat: the dat struct
- * @path: path to the file
+ * @_path: path to the file
  *
  * Return: 1 if true, 0 otherwise
  */
-int _iscmd(data_t *dat, char *path)
+int _iscmd(data_t *dat, char *_path)
 {
 	struct stat st;
 
 	(void)dat;
-	if (!path || stat(path, &st))
+	if (!_path || stat(_path, &st))
 		return (0);
 
 	if (st.st_mode & S_IFREG)
@@ -24,63 +24,63 @@ int _iscmd(data_t *dat, char *path)
 
 /**
  * dup_chars - duplicates characters
- * @pathstr: the PATH string
- * @start: starting index
- * @stop: stopping index
+ * @_pathstr: the PATH string
+ * @_start: starting index
+ * @_stop: stopping index
  *
  * Return: pointer to new buffer
  */
-char *dup_chars(char *pathstr, int start, int stop)
+char *dup_chars(char *_pathstr, int _start, int _stop)
 {
-	static char buf[1024];
-	int i = 0, k = 0;
+	static char buff[1024];
+	int x = 0, j = 0;
 
-	for (k = 0, i = start; i < stop; i++)
-		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
+	for (j = 0, x = _start; x < _stop; x++)
+		if (_pathstr[x] != ':')
+			buff[j++] = _pathstr[x];
+	buff[j] = 0;
+	return (buff);
 }
 
 /**
  * _findpath - finds this cmd in the PATH string
  * @dat: the dat struct
- * @pathstr: the PATH string
- * @cmd: the cmd to find
+ * @_pathstr: the PATH string
+ * @_cmd: the cmd to find
  *
  * Return: full path of cmd if found or NULL
  */
-char *_findpath(data_t *dat, char *pathstr, char *cmd)
+char *_findpath(data_t *dat, char *_pathstr, char *_cmd)
 {
-	int n = 0, curr_pos = 0;
-	char *path;
+	int m = 0, current_pos = 0;
+	char *_path;
 
-	if (!pathstr)
+	if (!_pathstr)
 		return (NULL);
-	if ((string_len(cmd) > 2) && _startswith(cmd, "./"))
+	if ((string_len(_cmd) > 2) && _startswith(_cmd, "./"))
 	{
-		if (_iscmd(dat, cmd))
-			return (cmd);
+		if (_iscmd(dat, _cmd))
+			return (_cmd);
 	}
 	while (1)
 	{
-		if (!pathstr[n] || pathstr[n] == ':')
+		if (!_pathstr[n] || _pathstr[n] == ':')
 		{
-			path = dup_chars(pathstr, curr_pos, n);
-			if (!*path)
-				string_cat(path, cmd);
+			_path = dup_chars(_pathstr, current_pos, m);
+			if (!*_path)
+				string_cat(_path, _cmd);
 			else
 			{
-				string_cat(path, "/");
-				string_cat(path, cmd);
+				string_cat(_path, "/");
+				string_cat(_path, _cmd);
 			}
-			if (_iscmd(dat, path))
-				return (path);
-			if (!pathstr[n])
+			if (_iscmd(dat, _path))
+				return (_path);
+			if (!_pathstr[m])
 				break;
-			curr_pos = n;
+			current_pos = m;
 		}
-		n++;
+		m++;
 	}
 	return (NULL);
 }

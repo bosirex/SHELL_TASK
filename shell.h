@@ -12,15 +12,14 @@
 #include <fcntl.h>
 #include <errno.h>
 
-
-#define READ_BUF_SIZE 1024
-#define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH -1
-
 #define CMD_NORM	0
 #define CMD_OR		1
 #define CMD_AND		2
 #define CMD_CHAIN	3
+
+#define READ_BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
 
 #define CONVERT_LOWERCASE	1
 #define CONVERT_UNSIGNED	2
@@ -33,41 +32,42 @@
 
 extern char **environ;
 
-
 /**
- * struct liststr - singly linked list
+ * struct liststring - singly linked list
  * @num: the number field
  * @str: a string
  * @next: points to the next nd
  */
-typedef struct liststr
+typedef struct liststring
 {
-	int num;
+	int number;
 	char *str;
-	struct liststr *next;
+	struct liststring *next;
 } lst_t;
 
 typedef struct passdat
 {
+	char *path;
 	char *arg;
 	char **argv;
-	char *path;
 	int argc;
-	unsigned int lenght_count;
-	int err_num;
-	int line_count_flag;
-	char *fname;
 	lst_t *env;
 	lst_t *history;
 	lst_t *alias;
+	int line_count_flag;
+	char *fname;
 	char **environ;
 	int env_changed;
 	int status;
+	unsigned int lenght_count;
+	int err_number;
+	
+	
 
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
-	int readfd;
-	int histcount;
+	int _readfd;
+	int history_count;
 } data_t;
 
 #define dat_INIT \
@@ -75,9 +75,9 @@ typedef struct passdat
 		0, 0, 0}
 
 /**
- * struct builtin - contains a builtin string and related function
- * @type: the builtin command flag
- * @func: the function
+ * struct builtin - builtin string function
+ * @type: builtin command flag
+ * @func: function
  */
 typedef struct builtin
 {
@@ -86,125 +86,126 @@ typedef struct builtin
 } table;
 
 
-/* shell_loop.c */
+/* _string.c */
+int string_len(char *);
+int str_comparison(char *, char *);
+char *_startswith(const char *, const char *);
+char *string_cat(char *, char *);
+
+/* _shell_loop.c */
 int main_shell(data_t *, char **);
 int builtin_find(data_t *);
 void get_cmd(data_t *);
 void _forkcmd(data_t *);
 
-/* parser.c */
-int _iscmd(data_t *, char *);
-char *dup_chars(char *, int, int);
-char *_findpath(data_t *, char *, char *);
-
-/* loopmain_shell.c */
+/* _loopmain_shell.c */
 int loopmain_shell(char **);
 
-/* errors.c */
+/* _errors.c */
 void _eputs(char *);
 int _eputchar(char);
-int put_fd(char c, int fd);
+int fd_put(char c, int fd);
 int putsfile_desc(char *str, int fd);
 
-/* string.c */
-int string_len(char *);
-int _strcmp(char *, char *);
-char *_startswith(const char *, const char *);
-char *string_cat(char *, char *);
-
-/* string1.c */
+/* _string1.c */
 char *string_cpy(char *, char *);
 char *string_dup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-/* exits.c */
+/* _parser.c */
+int _iscmd(data_t *, char *);
+char *dup_chars(char *, int, int);
+char *_findpath(data_t *, char *, char *);
+
+/* _exits.c */
 char *str_copy(char *, char *, int);
 char *string_concatenate(char *, char *, int);
 char *string_character(char *, char);
 
-/* tokenizer.c */
-char **string_word(char *, char *);
-char **string_word2(char *, char);
-
-/* real_loc.c */
-char *mem_set(char *, char, unsigned int);
-void f_free(char **);
-void *real_loc(void *, unsigned int, unsigned int);
-
-/* memory.c */
+/* _memory.c */
 int ptr_free(void **);
 
-/* atoi.c */
+/* _atoi.c */
 int interactiv(data_t *);
 int _isdelim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-/* errors1.c */
+/* _tokenizer.c */
+char **string_word(char *, char *);
+char **string_word2(char *, char);
+
+/* _realloc.c */
+char *mem_set(char *, char, unsigned int);
+void f_free(char **);
+void *real_loc(void *, unsigned int, unsigned int);
+
+/* _errors1.c */
 int _erratoi(char *);
 void error_print(data_t *, char *);
 int print_dec(int, int);
 char *convt_number(long int, int, int);
 void comments_remove(char *);
 
-/* builtin.c */
+/* _builtin.c */
 int _exits(data_t *);
 int _cd(data_t *);
 int _help(data_t *);
 
-/* builtin1.c */
+/* _builtin1.c */
 int _history(data_t *);
 int _alias(data_t *);
 
-/*getline.c */
+/* _getline.c */
 ssize_t input_get(data_t *);
 int get_line(data_t *, char **, size_t *);
 void sigintHandler(int);
 
-/* getdat.c */
+/* _getdat.c */
 void clear_dat(data_t *);
 void set_dat(data_t *, char **);
 void free_dat(data_t *, int);
 
-/* environ.c */
-char *get_env(data_t *, const char *);
-int _env(data_t *);
-int _setenviron(data_t *);
-int _unsetenviron(data_t *);
-int env_list_populate(data_t *);
-
-/* env.c */
-char **get_environ(data_t *);
-int _unsetenv(data_t *, char *);
-int _setenv(data_t *, char *, char *);
-
-/* history.c */
-char *get_hist_file(data_t *dat);
-int wrt_history(data_t *dat);
-int history_read(data_t *dat);
-int build_history_list(data_t *dat, char *buf, int line_count);
-int renumber_history(data_t *dat);
-
-/* lists.c */
+/* _lists.c */
 lst_t *add_nd(lst_t **, const char *, int);
 lst_t *add_nd_end(lst_t **, const char *, int);
 size_t print_lst_str(const lst_t *);
 int delete_nd_at_index(lst_t **, unsigned int);
 void free_list(lst_t **);
 
-/* lists1.c */
+/* _history.c */
+char *get_hist_file(data_t *dat);
+int wrt_history(data_t *dat);
+int history_read(data_t *dat);
+int build_history_list(data_t *dat, char *buf, int line_count);
+int renumber_history(data_t *dat);
+
+
+/* _lists1.c */
 size_t length_list(const lst_t *);
 char **lst_to_str(lst_t *);
 size_t print_list(const lst_t *);
 lst_t *nd_startswith(lst_t *, char *, char);
 ssize_t get_nd_index(lst_t *, lst_t *);
 
-/* vars.c */
+/* _vars.c */
 int _ischain(data_t *, char *, size_t *);
 void check_chain(data_t *, char *, size_t *, size_t, size_t);
 int replace_alias(data_t *);
 int vars_replace(data_t *);
 int _replacestring(char **, char *);
+
+/* _environ.c */
+char *get_env(data_t *, const char *);
+int _env(data_t *);
+int _setenviron(data_t *);
+int _unsetenviron(data_t *);
+int env_list_populate(data_t *);
+
+/* _env.c */
+char **get_environ(data_t *);
+int _unsetenv(data_t *, char *);
+int _setenv(data_t *, char *, char *);
 
 #endif

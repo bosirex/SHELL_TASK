@@ -55,24 +55,24 @@ int _unsetenv(data_t *dat, char *var)
  * @dat: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  * @var: the string env var property
- * @value: the string env var value
+ * @val: the string env var value
  *  Return: Always 0
  */
-int _setenv(data_t *dat, char *var, char *value)
+int _setenv(data_t *dat, char *var, char *val)
 {
-	char *buf = NULL;
+	char *buff = NULL;
 	lst_t *nd;
 	char *b;
 
-	if (!var || !value)
+	if (!var || !val)
 		return (0);
 
-	buf = malloc(string_len(var) + string_len(value) + 2);
-	if (!buf)
+	buff = malloc(string_len(var) + string_len(val) + 2);
+	if (!buff)
 		return (1);
-	string_cpy(buf, var);
-	string_cat(buf, "=");
-	string_cat(buf, value);
+	string_cpy(buff, var);
+	string_cat(buff, "=");
+	string_cat(buff, val);
 	nd = dat->env;
 	while (nd)
 	{
@@ -80,14 +80,14 @@ int _setenv(data_t *dat, char *var, char *value)
 		if (b && *b == '=')
 		{
 			free(nd->str);
-			nd->str = buf;
+			nd->str = buff;
 			dat->env_changed = 1;
 			return (0);
 		}
 		nd = nd->next;
 	}
-	add_nd_end(&(dat->env), buf, 0);
-	free(buf);
+	add_nd_end(&(dat->env), buff, 0);
+	free(buff);
 	dat->env_changed = 1;
 	return (0);
 }

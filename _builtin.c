@@ -9,12 +9,12 @@
  */
 int _exits(data_t *dat)
 {
-	int exitcheck;
+	int _exitcheck;
 
 	if (dat->argv[1]) /* If there is an exit arguement */
 	{
-		exitcheck = _erratoi(dat->argv[1]);
-		if (exitcheck == -1)
+		_exitcheck = _erratoi(dat->argv[1]);
+		if (_exitcheck == -1)
 		{
 			dat->status = 2;
 			error_print(dat, "Illegal number: ");
@@ -22,10 +22,10 @@ int _exits(data_t *dat)
 			_eputchar('\n');
 			return (1);
 		}
-		dat->err_num = _erratoi(dat->argv[1]);
+		dat->err_number = _erratoi(dat->argv[1]);
 		return (-2);
 	}
-	dat->err_num = -1;
+	dat->err_number = -1;
 	return (-2);
 }
 
@@ -37,32 +37,32 @@ int _exits(data_t *dat)
  */
 int _cd(data_t *dat)
 {
-	char *s, *dr, buffer[1024];
+	char *z, *_dr, buff[1024];
 	int chdr_ret;
 
-	s = getcwd(buffer, 1024);
-	if (!s)
+	z = getcwd(buff, 1024);
+	if (!z)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!dat->argv[1])
 	{
-		dr = get_env(dat, "HOME=");
-		if (!dr)
+		_dr = get_env(dat, "HOME=");
+		if (!_dr)
 			chdr_ret = /* TODO: what should this be? */
-				chdir((dr = get_env(dat, "PWD=")) ? dr : "/");
+				chdir((_dr = get_env(dat, "PWD=")) ? _dr : "/");
 		else
-			chdr_ret = chdir(dr);
+			chdr_ret = chdir(_dr);
 	}
-	else if (_strcmp(dat->argv[1], "-") == 0)
+	else if (str_comparison(dat->argv[1], "-") == 0)
 	{
 		if (!get_env(dat, "OLDPWD="))
 		{
-			_puts(s);
+			_puts(z);
 			_putchar('\n');
 			return (1);
 		}
 		_puts(get_env(dat, "OLDPWD=")), _putchar('\n');
 		chdr_ret = /* TODO: what should this be? */
-			chdir((dr = get_env(dat, "OLDPWD=")) ? dr : "/");
+			chdir((_dr = get_env(dat, "OLDPWD=")) ? dr : "/");
 	}
 	else
 		chdr_ret = chdir(dat->argv[1]);
@@ -74,7 +74,7 @@ int _cd(data_t *dat)
 	else
 	{
 		_setenv(dat, "OLDPWD", get_env(dat, "PWD="));
-		_setenv(dat, "PWD", getcwd(buffer, 1024));
+		_setenv(dat, "PWD", getcwd(buff, 1024));
 	}
 	return (0);
 }

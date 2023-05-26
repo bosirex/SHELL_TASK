@@ -8,32 +8,32 @@
  */
 int interactiv(data_t *dat)
 {
-	return (isatty(STDIN_FILENO) && dat->readfd <= 2);
+	return (isatty(STDIN_FILENO) && dat->_readfd <= 2);
 }
 
 /**
  * _isdelim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
+ * @d: the char to check
+ * @delm: the delimeter string
  * Return: 1 if true, 0 if false
  */
-int _isdelim(char c, char *delim)
+int _isdelim(char d, char *delm)
 {
-	while (*delim)
-		if (*delim++ == c)
+	while (*delm)
+		if (*delm++ == d)
 			return (1);
 	return (0);
 }
 
 /**
  * _isalpha - checks for alphabetic character
- * @c: The character to input
+ * @k: The character to input
  * Return: 1 if c is alphabetic, 0 otherwise
  */
 
-int _isalpha(int c)
+int _isalpha(int k)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((k >= 'a' && k <= 'z') || (k >= 'A' && k <= 'Z'))
 		return (1);
 	else
 		return (0);
@@ -41,34 +41,34 @@ int _isalpha(int c)
 
 /**
  * _atoi - converts a string to an integer
- * @s: the string to be converted
+ * @z: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  */
 
-int _atoi(char *s)
+int _atoi(char *z)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	int x, _sign = 1, _flag = 0, _output;
+	unsigned int _result = 0;
 
-	for (i = 0; s[i] != '\0' && flag != 2; i++)
+	for (x = 0; z[x] != '\0' && _flag != 2; x++)
 	{
-		if (s[i] == '-')
-			sign *= -1;
+		if (z[x] == '-')
+			_sign *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (z[x] >= '0' && z[x] <= '9')
 		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
+			_flag = 1;
+			_result *= 10;
+			_result += (z[x] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (_flag == 1)
+			_flag = 2;
 	}
 
-	if (sign == -1)
-		output = -result;
+	if (_sign == -1)
+		_output = -_result;
 	else
-		output = result;
+		_output = _result;
 
-	return (output);
+	return (_output);
 }
